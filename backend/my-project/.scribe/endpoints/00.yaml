@@ -1,0 +1,610 @@
+name: Endpoints
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: sanctum/csrf-cookie
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Return an empty response simply to trigger the storage of the CSRF cookie in the browser.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 204
+        content: ''
+        headers:
+          cache-control: 'no-cache, private'
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6Ikk3Q3FtQmZaOUhJYWhFeGJpOGQ1dHc9PSIsInZhbHVlIjoiT2ZGRTgzcWZaV1Ixc0RsbHd6S0N4QmVlQSt5SW0va0gvRXJnV2h0UFllS0hhYlRFOUVHV2t1bksvbGtLN1RmMFpONjM1bGV5TE11S1JhODhFaWJvSk5qdjkyMDZTNjVvS3huRW8yZHI5QTl5Yll3RE9wQUVKckxmQ3ZGSEw2R1kiLCJtYWMiOiJiMjJkNzA4Nzg5NDkwNjU3YWY1NGI3ZWIzYzRjNjRhNWRiNzExM2EwNjFhYmM0NTdjOTUzOTRiYTM5ZjY1NGIyIiwidGFnIjoiIn0%3D; expires=Wed, 11 Dec 2024 10:39:31 GMT; Max-Age=14400; path=/; samesite=lax; laravel_session=eyJpdiI6IlVmUnk5R0FuUHZkKzRvQi9SZTlCZ1E9PSIsInZhbHVlIjoiYmd1VUYydENjTmxYVTZZaFVBQ2dtdnN4UllOcGZmOTdWRnRQc0ZsQnQ5NFhjdzZVSmZlbG5HdWsvSkZXNXVJdjR6ZjVnQnh4bGtkNG4yOGRqZUEzSlJad1Z3L0VFNTZkTzJnTG5mZ2NnZHRpVUg0RE5wOVcxYWd4SytTVFcwUGQiLCJtYWMiOiI3NjU4YTA2ZmY3Mjc3NmM0YjE0M2ExOWE1ZjU1ZDFhOWRkZmE4YTczY2IxNjg1MTQ0ZjFjYjM3ZWRiZDk1NThiIiwidGFnIjoiIn0%3D; expires=Wed, 11 Dec 2024 10:39:31 GMT; Max-Age=14400; path=/; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/user
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: up
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+
+              <title>Laravel</title>
+
+              <!-- Fonts -->
+              <link rel="preconnect" href="https://fonts.bunny.net">
+              <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+
+              <!-- Styles -->
+              <script src="https://cdn.tailwindcss.com"></script>
+
+              <script>
+                  tailwind.config = {
+                      theme: {
+                          extend: {
+                              fontFamily: {
+                                  sans: ['Figtree', 'ui-sans-serif', 'system-ui', 'sans-serif', "Apple Color Emoji", "Segoe UI Emoji"],
+                              }
+                          }
+                      }
+                  }
+              </script>
+          </head>
+          <body class="antialiased">
+          <div class="relative flex justify-center items-center min-h-screen bg-gray-100 selection:bg-red-500 selection:text-white">
+              <div class="w-full sm:w-3/4 xl:w-1/2 mx-auto p-6">
+                  <div class="px-6 py-4 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex items-center focus:outline focus:outline-2 focus:outline-red-500">
+                      <div class="relative flex h-3 w-3 group ">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 group-[.status-down]:bg-red-600 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-3 w-3 bg-green-400 group-[.status-down]:bg-red-600"></span>
+                      </div>
+
+                      <div class="ml-6">
+                          <h2 class="text-xl font-semibold text-gray-900">Application up</h2>
+
+                          <p class="mt-2 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                              HTTP request received.
+
+                                                      Response rendered in 459ms.
+                                              </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          </body>
+          </html>
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: /
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"Laravel":"11.34.2"}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6InRJd2hqR1kzcTVhRjZOY1V1SkxkcHc9PSIsInZhbHVlIjoiM2pUZ2RCbUl1UHhLMWdtU29NejVlY3puYXFCWTN2TVhzYmpkQytQM2dmUHRkZDFkVm5lSGt6aW9DTlRwMTB4dUFWeW1YR3B4QWhvVGNzUThDMnZLYkVsVFdtSllDUkdBeUNCR1lFSlZzU2FxMHQ4bVNsUFQ5ZmRnZnp1d2NneWIiLCJtYWMiOiI1NWYyMjhjYjU3MzJhNzAxNDNiODM4YTEyYTMxY2ViNjhlMjY0ZTU4MTZkZDFhN2VlN2E2NWJjMDVhNzVhMTI5IiwidGFnIjoiIn0%3D; expires=Wed, 11 Dec 2024 10:39:31 GMT; Max-Age=14400; path=/; samesite=lax; laravel_session=eyJpdiI6IlhHVVBPbVZZem5TVnBVczBJcndhQmc9PSIsInZhbHVlIjoia29lMlZRNEhyM2hRWVBVaHFtZXpadWZxeUI1c3JoTnZWZzdTS2pGUlh1M1QwalFCcmNaSlRzU0VYRG4yYytSN0NDc21abG90bmt3aVBXaGlYTyttMjJrcTdHemJVS2h5akQ5MlBsUmgva3F1NG9yeFdHUWhEVHhtU2orV0ZuOU4iLCJtYWMiOiI4MzBkNmE5YjBlYjk4MzVmOTRhNGRlZWQzYzE3MGY4OTMxZGQ3ZDJlMTljYmEzY2M3ZmI3ZTYxMTczZjM0ZWFjIiwidGFnIjoiIn0%3D; expires=Wed, 11 Dec 2024 10:39:31 GMT; Max-Age=14400; path=/; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: register
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Handle an incoming registration request.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: yymckxntidkhggdfptb
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address. Must not be greater than 255 characters.'
+        required: true
+        example: fay.breitenberg@example.org
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      password:
+        name: password
+        description: ''
+        required: true
+        example: blanditiis
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: yymckxntidkhggdfptb
+      email: fay.breitenberg@example.org
+      password: blanditiis
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: login
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Handle an incoming authentication request.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: sabina55@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      password:
+        name: password
+        description: ''
+        required: true
+        example: 'vZ`#LayB2pmwLq'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      email: sabina55@example.com
+      password: 'vZ`#LayB2pmwLq'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: forgot-password
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Handle an incoming password reset link request.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: gromaguera@example.org
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      email: gromaguera@example.org
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: reset-password
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Handle an incoming new password request.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      token:
+        name: token
+        description: ''
+        required: true
+        example: vero
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: ephraim45@example.org
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      password:
+        name: password
+        description: ''
+        required: true
+        example: voluptatem
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      token: vero
+      email: ephraim45@example.org
+      password: voluptatem
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'verify-email/{id}/{hash}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Mark the authenticated user's email address as verified."
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the verify email.'
+        required: true
+        example: voluptatem
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      hash:
+        name: hash
+        description: ''
+        required: true
+        example: repellendus
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: voluptatem
+      hash: repellendus
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6ImEzdVpTTUQ5RElmNnVGakVZNENiYnc9PSIsInZhbHVlIjoiUERodUFGSi9EQ2M0WmlZb3ZkR04reDZXZFFqQUFQUEpiR21jSmg2SWtEZmFPYWZwcXlFZUp3ZWNtWmJDcEtzQ29uck0vWkNXME5oMTloSVRxUkl5bWcyeUR1dVZxcDNvWXhxdHE3b3hxaWNMdEVMZFdFK1djbzcwejdYZTlHQlYiLCJtYWMiOiIwZGRlZGU2YzY1ZmU1ZDI1MjBiMTQ2NDA1ZWFiNTUzMTRjNDgyNDA2YmU2ZjU2NjFkYWI5YzQ0YTU4ZDZmODY4IiwidGFnIjoiIn0%3D; expires=Wed, 11 Dec 2024 10:39:31 GMT; Max-Age=14400; path=/; samesite=lax; laravel_session=eyJpdiI6IkJZcVExMFNXdTRHL2ZHUHN6NEkyaVE9PSIsInZhbHVlIjoiYWQreHZQMGt3SkhDcmtJMXJCSWNHNjdlM0VTRGp2VWxvamx0eElDRlliTHVLSmM2WUxhNmlWdnVHMzJaOFR2eG9jcVN5QzBFTnpxMkxnaFlWU0grRFFPNEpFdnp0ZUp1VFFSMlFhNENsQkh5dTNIVUxZTlh2OTlScjAvejROR2wiLCJtYWMiOiIxMTNlZmRlZGZkYTkxZDQ1NDJkZGI4ZWE3MDIwNTcwYWE1NzBkYWY1NDI1NmVhYWIyNGI1MzBmZmMwNjU2M2FhIiwidGFnIjoiIn0%3D; expires=Wed, 11 Dec 2024 10:39:31 GMT; Max-Age=14400; path=/; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: email/verification-notification
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Send a new email verification notification.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: logout
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Destroy an authenticated session.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'storage/{path}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      path:
+        name: path
+        description: ''
+        required: true
+        example: 'Z2#'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      path: 'Z2#'
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 403
+        content: |-
+          {
+              "message": ""
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
