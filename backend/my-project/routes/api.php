@@ -2,13 +2,14 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Define routes for product resource, exposing only index,show,search methods
-Route::get('products', [ProductController::class, 'index']);
-Route::get('products/{product}', [ProductController::class, 'show']);
-Route::get('products/search', [ProductController::class, 'search']);
+// Include additional API route files
+require __DIR__.'/api/products.php';
+require __DIR__.'/api/orders.php';
+require __DIR__.'/api/order_details.php';
+require __DIR__.'/api/payments.php';
+require __DIR__.'/api/shipments.php';
