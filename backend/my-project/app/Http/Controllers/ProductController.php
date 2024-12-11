@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -13,23 +12,27 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $products = Product::all();
+        return response()->json($products);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'sku' => 'required|string|unique:products,sku',
+            'quantity' => 'required|integer|min:0',
+            'category' => 'required|in:milk,tea,other',
+            'image_url' => 'nullable|url'
+        ]);
+
+        $product = Product::create($validatedData);
+        return response()->json($product, 201);
     }
 
     /**
@@ -37,23 +40,26 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product)
-    {
-        //
+        return response()->json($product);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(Request $request, Product $product)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'sku' => 'required|string|unique:products,sku,' . $product->id,
+            'quantity' => 'required|integer|min:0',
+            'category' => 'required|in:milk,tea,other',
+            'image_url' => 'nullable|url'
+        ]);
+
+        $product->update($validatedData);
+        return response()->json($product);
     }
 
     /**
@@ -61,6 +67,17 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return response()->json(null, 204);
+    }
+
+    /**
+     * Search for a product by name.
+     */
+    public function search(Request $request)
+    {
+        $name = $request->query('name');
+        $products = Product::where('name', 'like', "%{$name}%")->get();
+        return response()->json($products);
     }
 }
