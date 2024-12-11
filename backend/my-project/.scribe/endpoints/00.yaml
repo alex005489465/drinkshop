@@ -32,7 +32,7 @@ endpoints:
           cache-control: 'no-cache, private'
           access-control-allow-origin: 'http://localhost:3000'
           access-control-allow-credentials: 'true'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6Ikk3Q3FtQmZaOUhJYWhFeGJpOGQ1dHc9PSIsInZhbHVlIjoiT2ZGRTgzcWZaV1Ixc0RsbHd6S0N4QmVlQSt5SW0va0gvRXJnV2h0UFllS0hhYlRFOUVHV2t1bksvbGtLN1RmMFpONjM1bGV5TE11S1JhODhFaWJvSk5qdjkyMDZTNjVvS3huRW8yZHI5QTl5Yll3RE9wQUVKckxmQ3ZGSEw2R1kiLCJtYWMiOiJiMjJkNzA4Nzg5NDkwNjU3YWY1NGI3ZWIzYzRjNjRhNWRiNzExM2EwNjFhYmM0NTdjOTUzOTRiYTM5ZjY1NGIyIiwidGFnIjoiIn0%3D; expires=Wed, 11 Dec 2024 10:39:31 GMT; Max-Age=14400; path=/; samesite=lax; laravel_session=eyJpdiI6IlVmUnk5R0FuUHZkKzRvQi9SZTlCZ1E9PSIsInZhbHVlIjoiYmd1VUYydENjTmxYVTZZaFVBQ2dtdnN4UllOcGZmOTdWRnRQc0ZsQnQ5NFhjdzZVSmZlbG5HdWsvSkZXNXVJdjR6ZjVnQnh4bGtkNG4yOGRqZUEzSlJad1Z3L0VFNTZkTzJnTG5mZ2NnZHRpVUg0RE5wOVcxYWd4SytTVFcwUGQiLCJtYWMiOiI3NjU4YTA2ZmY3Mjc3NmM0YjE0M2ExOWE1ZjU1ZDFhOWRkZmE4YTczY2IxNjg1MTQ0ZjFjYjM3ZWRiZDk1NThiIiwidGFnIjoiIn0%3D; expires=Wed, 11 Dec 2024 10:39:31 GMT; Max-Age=14400; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6InZpR0Q2ZGF6QXpOM0ErR3pxUmxnRGc9PSIsInZhbHVlIjoiR09jZWRSenBtS0xxL0tKc1JXVVhmaC9EUG9NVHRIVHczTHdKZW44aGY3TlIwMW93eVVjeWNzL2NubmI0RTRkMWFIUGp5RUtXMDIyZ2tKanRKMjZ0S25uT0p1Rm94QXB3cmYwZE9zWklsdDdEVEYxdHV0UVBtL0RPS25NRitibCsiLCJtYWMiOiIzOGIyODUxNTY5MjEzMjg1NDA2OGVjOTU0Y2RmYjhlMDkyYjgyMjk0ZjBiOWQ3YzdmNDQzNTRjNjkwNTdlZDYyIiwidGFnIjoiIn0%3D; expires=Wed, 11 Dec 2024 19:29:12 GMT; Max-Age=14400; path=/; samesite=lax; laravel_session=eyJpdiI6ImhiZXM3dXdmTUlpQW00Q0tYRnArQ2c9PSIsInZhbHVlIjoieUsxVUdRaEJENzh1L2lpYW5oamZqUkY3bElyZjBhdEF0THZXa3JHaWNXVkF5R1h0QXVTRkI0Q29yZFFYWnhjTERrbWh4bSthS3NtR3FzLzhEWjdhTkZmeFY1KzlTbDNIaW9mVWoyVi9pSFZhK3VsT09iUFREWXR5L0xRekRYY1MiLCJtYWMiOiJmZjVmYTBmNzliNDI2OWI2YmVlMTczYjZkNGQ1MzRiZWRjOThjOTA0NTAyZTU2N2YxZTdmODgzZGNjNjY2YzQ2IiwidGFnIjoiIn0%3D; expires=Wed, 11 Dec 2024 19:29:12 GMT; Max-Age=14400; path=/; httponly; samesite=lax'
         description: null
         custom: []
     responseFields: []
@@ -68,6 +68,140 @@ endpoints:
       -
         status: 401
         content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/products
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a listing of the resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '[{"id":1,"name":"voluptatem","description":"Quo pariatur aut quo occaecati nostrum corrupti.","price":73.47,"sku":"SKU0983","quantity":50,"category":"tea","image_url":"https:\/\/via.placeholder.com\/640x480.png\/00ccaa?text=product+quo","created_at":"2024-12-11T15:05:06.000000Z","updated_at":"2024-12-11T15:05:06.000000Z"},{"id":2,"name":"veritatis","description":"Temporibus ut eius rerum rerum quaerat officia.","price":40.13,"sku":"SKU0556","quantity":78,"category":"other","image_url":"https:\/\/via.placeholder.com\/640x480.png\/001144?text=product+natus","created_at":"2024-12-11T15:05:06.000000Z","updated_at":"2024-12-11T15:05:06.000000Z"},{"id":3,"name":"odio","description":"Explicabo nostrum voluptatum harum expedita dolore saepe voluptas.","price":50.2,"sku":"SKU4910","quantity":20,"category":"tea","image_url":"https:\/\/via.placeholder.com\/640x480.png\/008899?text=product+atque","created_at":"2024-12-11T15:05:06.000000Z","updated_at":"2024-12-11T15:05:06.000000Z"},{"id":4,"name":"sed","description":"Odio laboriosam quasi esse dolores ut.","price":60.3,"sku":"SKU4149","quantity":30,"category":"milk","image_url":"https:\/\/via.placeholder.com\/640x480.png\/009900?text=product+asperiores","created_at":"2024-12-11T15:05:06.000000Z","updated_at":"2024-12-11T15:05:06.000000Z"},{"id":5,"name":"eum","description":"Blanditiis distinctio repellendus voluptatibus aliquam inventore labore.","price":58.29,"sku":"SKU2405","quantity":10,"category":"other","image_url":"https:\/\/via.placeholder.com\/640x480.png\/002288?text=product+et","created_at":"2024-12-11T15:05:06.000000Z","updated_at":"2024-12-11T15:05:06.000000Z"},{"id":6,"name":"quae","description":"Ipsa commodi ipsum ut dolor hic ipsum in blanditiis.","price":87.81,"sku":"SKU3689","quantity":60,"category":"tea","image_url":"https:\/\/via.placeholder.com\/640x480.png\/008811?text=product+aliquid","created_at":"2024-12-11T15:05:06.000000Z","updated_at":"2024-12-11T15:05:06.000000Z"},{"id":7,"name":"rem","description":"Aperiam omnis dolorum impedit possimus.","price":75.23,"sku":"SKU7769","quantity":12,"category":"other","image_url":"https:\/\/via.placeholder.com\/640x480.png\/000088?text=product+est","created_at":"2024-12-11T15:05:06.000000Z","updated_at":"2024-12-11T15:05:06.000000Z"},{"id":8,"name":"qui","description":"Omnis quo magnam eaque expedita velit natus.","price":40.07,"sku":"SKU5770","quantity":39,"category":"tea","image_url":"https:\/\/via.placeholder.com\/640x480.png\/008855?text=product+illum","created_at":"2024-12-11T15:05:06.000000Z","updated_at":"2024-12-11T15:05:06.000000Z"},{"id":9,"name":"alias","description":"Rem dolores et odio enim maiores vel iusto.","price":7.67,"sku":"SKU4593","quantity":67,"category":"milk","image_url":"https:\/\/via.placeholder.com\/640x480.png\/0011aa?text=product+mollitia","created_at":"2024-12-11T15:05:06.000000Z","updated_at":"2024-12-11T15:05:06.000000Z"},{"id":10,"name":"inventore","description":"Nobis autem quidem fuga voluptatem odio ducimus.","price":70.72,"sku":"SKU9017","quantity":22,"category":"other","image_url":"https:\/\/via.placeholder.com\/640x480.png\/0033cc?text=product+quod","created_at":"2024-12-11T15:05:06.000000Z","updated_at":"2024-12-11T15:05:06.000000Z"},{"id":11,"name":"rerum","description":"Quia quaerat qui et sequi sunt qui.","price":20.27,"sku":"SKU7688","quantity":20,"category":"milk","image_url":"https:\/\/via.placeholder.com\/640x480.png\/00aa44?text=product+voluptatem","created_at":"2024-12-11T15:05:06.000000Z","updated_at":"2024-12-11T15:05:06.000000Z"},{"id":12,"name":"repellendus","description":"Dolor maxime dolore qui aut maxime rerum quis.","price":84.49,"sku":"SKU3335","quantity":71,"category":"milk","image_url":"https:\/\/via.placeholder.com\/640x480.png\/003377?text=product+nobis","created_at":"2024-12-11T15:05:06.000000Z","updated_at":"2024-12-11T15:05:06.000000Z"},{"id":13,"name":"deserunt","description":"Aperiam accusamus facere omnis fugit omnis ducimus.","price":14.08,"sku":"SKU1597","quantity":11,"category":"milk","image_url":"https:\/\/via.placeholder.com\/640x480.png\/00dd33?text=product+et","created_at":"2024-12-11T15:05:06.000000Z","updated_at":"2024-12-11T15:05:06.000000Z"},{"id":14,"name":"molestiae","description":"Dignissimos dolor quod sint consequatur sapiente ad.","price":51,"sku":"SKU9397","quantity":96,"category":"milk","image_url":"https:\/\/via.placeholder.com\/640x480.png\/008833?text=product+ut","created_at":"2024-12-11T15:05:06.000000Z","updated_at":"2024-12-11T15:05:06.000000Z"},{"id":15,"name":"aut","description":"Ipsum aut dolores aut consequatur molestiae sapiente molestias.","price":51.13,"sku":"SKU4261","quantity":2,"category":"other","image_url":"https:\/\/via.placeholder.com\/640x480.png\/0022cc?text=product+non","created_at":"2024-12-11T15:05:06.000000Z","updated_at":"2024-12-11T15:05:06.000000Z"},{"id":16,"name":"sequi","description":"Non eum aut molestiae et itaque reprehenderit et in.","price":92.88,"sku":"SKU5025","quantity":91,"category":"milk","image_url":"https:\/\/via.placeholder.com\/640x480.png\/0066bb?text=product+at","created_at":"2024-12-11T15:05:07.000000Z","updated_at":"2024-12-11T15:05:07.000000Z"},{"id":17,"name":"sit","description":"Explicabo atque vel sunt incidunt sit.","price":29.79,"sku":"SKU6084","quantity":69,"category":"milk","image_url":"https:\/\/via.placeholder.com\/640x480.png\/0033ee?text=product+dolore","created_at":"2024-12-11T15:05:07.000000Z","updated_at":"2024-12-11T15:05:07.000000Z"},{"id":18,"name":"temporibus","description":"Neque quia dolor porro tempora enim.","price":3.5,"sku":"SKU6953","quantity":5,"category":"tea","image_url":"https:\/\/via.placeholder.com\/640x480.png\/002277?text=product+id","created_at":"2024-12-11T15:05:07.000000Z","updated_at":"2024-12-11T15:05:07.000000Z"},{"id":19,"name":"voluptatem","description":"Dolor quod ut ut eveniet.","price":97.2,"sku":"SKU0431","quantity":29,"category":"tea","image_url":"https:\/\/via.placeholder.com\/640x480.png\/007744?text=product+consequuntur","created_at":"2024-12-11T15:05:07.000000Z","updated_at":"2024-12-11T15:05:07.000000Z"},{"id":20,"name":"numquam","description":"Quas dolorum perferendis error aut.","price":94.65,"sku":"SKU3341","quantity":91,"category":"milk","image_url":"https:\/\/via.placeholder.com\/640x480.png\/008844?text=product+voluptatum","created_at":"2024-12-11T15:05:07.000000Z","updated_at":"2024-12-11T15:05:07.000000Z"},{"id":21,"name":"ut","description":"Aut dolorem atque voluptatem labore ipsam officia voluptatum.","price":47.27,"sku":"SKU0353","quantity":4,"category":"milk","image_url":"https:\/\/via.placeholder.com\/640x480.png\/000044?text=product+porro","created_at":"2024-12-11T15:05:07.000000Z","updated_at":"2024-12-11T15:05:07.000000Z"},{"id":22,"name":"amet","description":"Nam culpa fuga non distinctio.","price":60.48,"sku":"SKU0409","quantity":83,"category":"tea","image_url":"https:\/\/via.placeholder.com\/640x480.png\/00ccff?text=product+temporibus","created_at":"2024-12-11T15:05:07.000000Z","updated_at":"2024-12-11T15:05:07.000000Z"},{"id":23,"name":"et","description":"Cumque facere libero quod qui.","price":59.31,"sku":"SKU6098","quantity":48,"category":"milk","image_url":"https:\/\/via.placeholder.com\/640x480.png\/0088aa?text=product+reiciendis","created_at":"2024-12-11T15:05:07.000000Z","updated_at":"2024-12-11T15:05:07.000000Z"},{"id":24,"name":"architecto","description":"Sit sed est non.","price":43.27,"sku":"SKU8224","quantity":10,"category":"other","image_url":"https:\/\/via.placeholder.com\/640x480.png\/003333?text=product+nam","created_at":"2024-12-11T15:05:07.000000Z","updated_at":"2024-12-11T15:05:07.000000Z"},{"id":25,"name":"non","description":"Voluptatem corrupti soluta pariatur eum aspernatur.","price":93.35,"sku":"SKU7939","quantity":85,"category":"other","image_url":"https:\/\/via.placeholder.com\/640x480.png\/009999?text=product+facere","created_at":"2024-12-11T15:05:07.000000Z","updated_at":"2024-12-11T15:05:07.000000Z"},{"id":26,"name":"autem","description":"Alias et dolor et blanditiis.","price":22.67,"sku":"SKU1679","quantity":2,"category":"milk","image_url":"https:\/\/via.placeholder.com\/640x480.png\/001166?text=product+dolor","created_at":"2024-12-11T15:05:07.000000Z","updated_at":"2024-12-11T15:05:07.000000Z"},{"id":27,"name":"occaecati","description":"Nisi et alias consequuntur quas.","price":85.02,"sku":"SKU3933","quantity":66,"category":"tea","image_url":"https:\/\/via.placeholder.com\/640x480.png\/00bb11?text=product+vero","created_at":"2024-12-11T15:05:07.000000Z","updated_at":"2024-12-11T15:05:07.000000Z"},{"id":28,"name":"voluptas","description":"Ad distinctio deleniti est harum sit facere et.","price":56.29,"sku":"SKU9989","quantity":59,"category":"other","image_url":"https:\/\/via.placeholder.com\/640x480.png\/00eeff?text=product+omnis","created_at":"2024-12-11T15:05:07.000000Z","updated_at":"2024-12-11T15:05:07.000000Z"},{"id":29,"name":"fuga","description":"Omnis odit quam est vel omnis.","price":1.38,"sku":"SKU3643","quantity":47,"category":"milk","image_url":"https:\/\/via.placeholder.com\/640x480.png\/0055ee?text=product+est","created_at":"2024-12-11T15:05:07.000000Z","updated_at":"2024-12-11T15:05:07.000000Z"},{"id":30,"name":"quas","description":"Molestias nihil magni aut.","price":98.49,"sku":"SKU7041","quantity":50,"category":"tea","image_url":"https:\/\/via.placeholder.com\/640x480.png\/00bb66?text=product+consequatur","created_at":"2024-12-11T15:05:08.000000Z","updated_at":"2024-12-11T15:05:08.000000Z"},{"id":31,"name":"rem","description":"Sit unde vitae quis quia.","price":79.49,"sku":"SKU6672","quantity":37,"category":"other","image_url":"https:\/\/via.placeholder.com\/640x480.png\/0077ee?text=product+qui","created_at":"2024-12-11T15:05:08.000000Z","updated_at":"2024-12-11T15:05:08.000000Z"},{"id":32,"name":"est","description":"Porro quisquam odio molestiae non provident minima omnis.","price":31.43,"sku":"SKU1804","quantity":33,"category":"tea","image_url":"https:\/\/via.placeholder.com\/640x480.png\/00bb44?text=product+sunt","created_at":"2024-12-11T15:05:08.000000Z","updated_at":"2024-12-11T15:05:08.000000Z"},{"id":33,"name":"nobis","description":"Velit illum sit architecto iusto.","price":69.75,"sku":"SKU2543","quantity":75,"category":"milk","image_url":"https:\/\/via.placeholder.com\/640x480.png\/0033aa?text=product+et","created_at":"2024-12-11T15:05:08.000000Z","updated_at":"2024-12-11T15:05:08.000000Z"},{"id":34,"name":"corrupti","description":"Dolorem rem iste voluptas.","price":9.2,"sku":"SKU3168","quantity":93,"category":"other","image_url":"https:\/\/via.placeholder.com\/640x480.png\/0022cc?text=product+dolor","created_at":"2024-12-11T15:05:08.000000Z","updated_at":"2024-12-11T15:05:08.000000Z"},{"id":35,"name":"nam","description":"Et ducimus et non cupiditate voluptates aut quod error.","price":76.67,"sku":"SKU6033","quantity":2,"category":"other","image_url":"https:\/\/via.placeholder.com\/640x480.png\/00ccbb?text=product+optio","created_at":"2024-12-11T15:05:08.000000Z","updated_at":"2024-12-11T15:05:08.000000Z"},{"id":36,"name":"hic","description":"Itaque culpa aperiam qui modi.","price":2.54,"sku":"SKU3763","quantity":66,"category":"tea","image_url":"https:\/\/via.placeholder.com\/640x480.png\/00aa22?text=product+cupiditate","created_at":"2024-12-11T15:05:08.000000Z","updated_at":"2024-12-11T15:05:08.000000Z"},{"id":37,"name":"quis","description":"Aut perferendis sit autem voluptas ipsa exercitationem error.","price":1.19,"sku":"SKU3398","quantity":69,"category":"milk","image_url":"https:\/\/via.placeholder.com\/640x480.png\/002266?text=product+quis","created_at":"2024-12-11T15:05:08.000000Z","updated_at":"2024-12-11T15:05:08.000000Z"},{"id":38,"name":"recusandae","description":"Non eligendi nesciunt quisquam omnis animi ut.","price":30.7,"sku":"SKU4456","quantity":33,"category":"milk","image_url":"https:\/\/via.placeholder.com\/640x480.png\/009977?text=product+eos","created_at":"2024-12-11T15:05:08.000000Z","updated_at":"2024-12-11T15:05:08.000000Z"},{"id":39,"name":"cum","description":"Magnam voluptatum voluptatem quo quis.","price":23.65,"sku":"SKU7366","quantity":73,"category":"tea","image_url":"https:\/\/via.placeholder.com\/640x480.png\/0066bb?text=product+est","created_at":"2024-12-11T15:05:08.000000Z","updated_at":"2024-12-11T15:05:08.000000Z"},{"id":40,"name":"aliquam","description":"Et nihil iste et nisi.","price":12.26,"sku":"SKU4527","quantity":38,"category":"tea","image_url":"https:\/\/via.placeholder.com\/640x480.png\/0077dd?text=product+officiis","created_at":"2024-12-11T15:05:08.000000Z","updated_at":"2024-12-11T15:05:08.000000Z"},{"id":41,"name":"voluptatum","description":"Non in hic et distinctio ipsum architecto perspiciatis voluptas.","price":37.87,"sku":"SKU0962","quantity":97,"category":"other","image_url":"https:\/\/via.placeholder.com\/640x480.png\/0000aa?text=product+dolor","created_at":"2024-12-11T15:05:08.000000Z","updated_at":"2024-12-11T15:05:08.000000Z"},{"id":42,"name":"et","description":"Non error quisquam sapiente voluptatibus repudiandae.","price":24.35,"sku":"SKU0616","quantity":29,"category":"other","image_url":"https:\/\/via.placeholder.com\/640x480.png\/00eecc?text=product+commodi","created_at":"2024-12-11T15:05:08.000000Z","updated_at":"2024-12-11T15:05:08.000000Z"},{"id":43,"name":"et","description":"Ipsa fugiat dolorem qui magni quas.","price":50.62,"sku":"SKU6744","quantity":43,"category":"other","image_url":"https:\/\/via.placeholder.com\/640x480.png\/0088cc?text=product+nihil","created_at":"2024-12-11T15:05:08.000000Z","updated_at":"2024-12-11T15:05:08.000000Z"},{"id":44,"name":"ratione","description":"Possimus temporibus consequatur rem ut quibusdam sapiente.","price":90.19,"sku":"SKU2889","quantity":11,"category":"other","image_url":"https:\/\/via.placeholder.com\/640x480.png\/00aa11?text=product+quos","created_at":"2024-12-11T15:05:08.000000Z","updated_at":"2024-12-11T15:05:08.000000Z"},{"id":45,"name":"consequuntur","description":"Provident atque natus maiores adipisci at amet saepe.","price":39.86,"sku":"SKU6380","quantity":74,"category":"milk","image_url":"https:\/\/via.placeholder.com\/640x480.png\/000099?text=product+enim","created_at":"2024-12-11T15:05:08.000000Z","updated_at":"2024-12-11T15:05:08.000000Z"},{"id":46,"name":"itaque","description":"Illo ipsam voluptate quas magnam sint quo.","price":67.68,"sku":"SKU7050","quantity":75,"category":"milk","image_url":"https:\/\/via.placeholder.com\/640x480.png\/001177?text=product+dolor","created_at":"2024-12-11T15:05:08.000000Z","updated_at":"2024-12-11T15:05:08.000000Z"},{"id":47,"name":"nihil","description":"Optio modi et non fuga vero.","price":88.83,"sku":"SKU2273","quantity":21,"category":"other","image_url":"https:\/\/via.placeholder.com\/640x480.png\/00ee99?text=product+quos","created_at":"2024-12-11T15:05:08.000000Z","updated_at":"2024-12-11T15:05:08.000000Z"},{"id":48,"name":"iure","description":"Molestiae ex natus animi vel quia et.","price":87.32,"sku":"SKU0553","quantity":32,"category":"other","image_url":"https:\/\/via.placeholder.com\/640x480.png\/00bb33?text=product+qui","created_at":"2024-12-11T15:05:08.000000Z","updated_at":"2024-12-11T15:05:08.000000Z"},{"id":49,"name":"aut","description":"Placeat cupiditate et ratione molestiae.","price":91.94,"sku":"SKU6979","quantity":47,"category":"milk","image_url":"https:\/\/via.placeholder.com\/640x480.png\/0044ee?text=product+vel","created_at":"2024-12-11T15:05:09.000000Z","updated_at":"2024-12-11T15:05:09.000000Z"},{"id":50,"name":"beatae","description":"Officia magni ipsa porro sint sed nam.","price":39.35,"sku":"SKU4959","quantity":13,"category":"other","image_url":"https:\/\/via.placeholder.com\/640x480.png\/006688?text=product+voluptatem","created_at":"2024-12-11T15:05:09.000000Z","updated_at":"2024-12-11T15:05:09.000000Z"}]'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/products/{product_id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      product_id:
+        name: product_id
+        description: 'The ID of the product.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      product_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"id":1,"name":"voluptatem","description":"Quo pariatur aut quo occaecati nostrum corrupti.","price":73.47,"sku":"SKU0983","quantity":50,"category":"tea","image_url":"https:\/\/via.placeholder.com\/640x480.png\/00ccaa?text=product+quo","created_at":"2024-12-11T15:05:06.000000Z","updated_at":"2024-12-11T15:05:06.000000Z"}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:3000'
+          access-control-allow-credentials: 'true'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/products/search
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Search for a product by name.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 404
+        content: |-
+          {
+              "message": "No query results for model [App\\Models\\Product] search"
+          }
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -150,7 +284,7 @@ endpoints:
                           <p class="mt-2 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
                               HTTP request received.
 
-                                                      Response rendered in 459ms.
+                                                      Response rendered in 503ms.
                                               </p>
                       </div>
                   </div>
@@ -203,7 +337,7 @@ endpoints:
           content-type: application/json
           access-control-allow-origin: 'http://localhost:3000'
           access-control-allow-credentials: 'true'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6InRJd2hqR1kzcTVhRjZOY1V1SkxkcHc9PSIsInZhbHVlIjoiM2pUZ2RCbUl1UHhLMWdtU29NejVlY3puYXFCWTN2TVhzYmpkQytQM2dmUHRkZDFkVm5lSGt6aW9DTlRwMTB4dUFWeW1YR3B4QWhvVGNzUThDMnZLYkVsVFdtSllDUkdBeUNCR1lFSlZzU2FxMHQ4bVNsUFQ5ZmRnZnp1d2NneWIiLCJtYWMiOiI1NWYyMjhjYjU3MzJhNzAxNDNiODM4YTEyYTMxY2ViNjhlMjY0ZTU4MTZkZDFhN2VlN2E2NWJjMDVhNzVhMTI5IiwidGFnIjoiIn0%3D; expires=Wed, 11 Dec 2024 10:39:31 GMT; Max-Age=14400; path=/; samesite=lax; laravel_session=eyJpdiI6IlhHVVBPbVZZem5TVnBVczBJcndhQmc9PSIsInZhbHVlIjoia29lMlZRNEhyM2hRWVBVaHFtZXpadWZxeUI1c3JoTnZWZzdTS2pGUlh1M1QwalFCcmNaSlRzU0VYRG4yYytSN0NDc21abG90bmt3aVBXaGlYTyttMjJrcTdHemJVS2h5akQ5MlBsUmgva3F1NG9yeFdHUWhEVHhtU2orV0ZuOU4iLCJtYWMiOiI4MzBkNmE5YjBlYjk4MzVmOTRhNGRlZWQzYzE3MGY4OTMxZGQ3ZDJlMTljYmEzY2M3ZmI3ZTYxMTczZjM0ZWFjIiwidGFnIjoiIn0%3D; expires=Wed, 11 Dec 2024 10:39:31 GMT; Max-Age=14400; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IlhLUGRKQnM1MXhkVkYvb0t6UW4xM2c9PSIsInZhbHVlIjoiL2FycUFxYzZLRys4V0tMYlYzbUVmOTdPZ0wvY0tqa05RQlQ3c1BudkdEWXRhVWIrWWltWmhhVlpKNlZERzJ5cEE1Q2JvL2l0SFZ1bUdrc3lpOWNyaHdEM3E4Z2J4bE5zMHN5T1NoYXYycXp1YzkwN2tRVHRKR3BPTWpQcitBOG8iLCJtYWMiOiJmOWY4MDcyOTRkNGU3NDI5OTBlZmRjNGVhMTU2MzI1NDY3YTg1MTgxN2E4ODhkYzYxZTM2MGY3YWQ5ZTNiNmYwIiwidGFnIjoiIn0%3D; expires=Wed, 11 Dec 2024 19:29:12 GMT; Max-Age=14400; path=/; samesite=lax; laravel_session=eyJpdiI6IjJzZkp6bzR0bUZ2ZnNuVHdHdzJUNFE9PSIsInZhbHVlIjoiWFdDQzJPcCtxTHZHaEFUZFJwTEM4RXMyaHlkVWs2Q0dZODlObnFDK1hkK0VSYU5Ccm1Xd21pRGk1dDBkQWZsbWRQVW4vc1ZUeXBQaTBRRFJ2NlBWMWZzOXNEU20xWlRhMFJUd242TlNES2J3bXArOTl2VGFKY0ZmTFptb3c4d0kiLCJtYWMiOiI5ZjFlNzZkYjc0NTFjNDMyZjFkYTBmYjUwMGZkMzdhOGI4NzMwMjA4MzQ5OWNiZTRhMzAyMDU5ODYxY2Q2ZDUxIiwidGFnIjoiIn0%3D; expires=Wed, 11 Dec 2024 19:29:12 GMT; Max-Age=14400; path=/; httponly; samesite=lax'
         description: null
         custom: []
     responseFields: []
@@ -237,7 +371,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: yymckxntidkhggdfptb
+        example: resyeifqcfokytvchdaemaa
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -247,7 +381,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address. Must not be greater than 255 characters.'
         required: true
-        example: fay.breitenberg@example.org
+        example: allene.lowe@example.org
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -257,16 +391,16 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: blanditiis
+        example: cumque
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      name: yymckxntidkhggdfptb
-      email: fay.breitenberg@example.org
-      password: blanditiis
+      name: resyeifqcfokytvchdaemaa
+      email: allene.lowe@example.org
+      password: cumque
     fileParameters: []
     responses: []
     responseFields: []
@@ -300,7 +434,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: sabina55@example.com
+        example: hlangworth@example.org
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -310,15 +444,15 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: 'vZ`#LayB2pmwLq'
+        example: 'WO?!$Xu!#%DEPg'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      email: sabina55@example.com
-      password: 'vZ`#LayB2pmwLq'
+      email: hlangworth@example.org
+      password: 'WO?!$Xu!#%DEPg'
     fileParameters: []
     responses: []
     responseFields: []
@@ -352,14 +486,14 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: gromaguera@example.org
+        example: chris.denesik@example.net
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      email: gromaguera@example.org
+      email: chris.denesik@example.net
     fileParameters: []
     responses: []
     responseFields: []
@@ -393,7 +527,7 @@ endpoints:
         name: token
         description: ''
         required: true
-        example: vero
+        example: impedit
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -403,7 +537,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: ephraim45@example.org
+        example: fbergstrom@example.com
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -413,16 +547,16 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: voluptatem
+        example: consequatur
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      token: vero
-      email: ephraim45@example.org
-      password: voluptatem
+      token: impedit
+      email: fbergstrom@example.com
+      password: consequatur
     fileParameters: []
     responses: []
     responseFields: []
@@ -452,7 +586,7 @@ endpoints:
         name: id
         description: 'The ID of the verify email.'
         required: true
-        example: voluptatem
+        example: perspiciatis
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -462,15 +596,15 @@ endpoints:
         name: hash
         description: ''
         required: true
-        example: repellendus
+        example: iure
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: voluptatem
-      hash: repellendus
+      id: perspiciatis
+      hash: iure
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -485,7 +619,7 @@ endpoints:
           content-type: application/json
           access-control-allow-origin: 'http://localhost:3000'
           access-control-allow-credentials: 'true'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6ImEzdVpTTUQ5RElmNnVGakVZNENiYnc9PSIsInZhbHVlIjoiUERodUFGSi9EQ2M0WmlZb3ZkR04reDZXZFFqQUFQUEpiR21jSmg2SWtEZmFPYWZwcXlFZUp3ZWNtWmJDcEtzQ29uck0vWkNXME5oMTloSVRxUkl5bWcyeUR1dVZxcDNvWXhxdHE3b3hxaWNMdEVMZFdFK1djbzcwejdYZTlHQlYiLCJtYWMiOiIwZGRlZGU2YzY1ZmU1ZDI1MjBiMTQ2NDA1ZWFiNTUzMTRjNDgyNDA2YmU2ZjU2NjFkYWI5YzQ0YTU4ZDZmODY4IiwidGFnIjoiIn0%3D; expires=Wed, 11 Dec 2024 10:39:31 GMT; Max-Age=14400; path=/; samesite=lax; laravel_session=eyJpdiI6IkJZcVExMFNXdTRHL2ZHUHN6NEkyaVE9PSIsInZhbHVlIjoiYWQreHZQMGt3SkhDcmtJMXJCSWNHNjdlM0VTRGp2VWxvamx0eElDRlliTHVLSmM2WUxhNmlWdnVHMzJaOFR2eG9jcVN5QzBFTnpxMkxnaFlWU0grRFFPNEpFdnp0ZUp1VFFSMlFhNENsQkh5dTNIVUxZTlh2OTlScjAvejROR2wiLCJtYWMiOiIxMTNlZmRlZGZkYTkxZDQ1NDJkZGI4ZWE3MDIwNTcwYWE1NzBkYWY1NDI1NmVhYWIyNGI1MzBmZmMwNjU2M2FhIiwidGFnIjoiIn0%3D; expires=Wed, 11 Dec 2024 10:39:31 GMT; Max-Age=14400; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IklRK2h0WHFtV1N6SlVlR0k2WDNhNGc9PSIsInZhbHVlIjoiVEpnT1hjeWpUZFpLRVcxU3NiMjY5c0tUeEg3cUxkWG55U0c0M2o0TlVrL25HV0tDcndWYk52M3pmZHdSRHZMamRwSXR6MmVHc0dCTXlHZUdDS1VyVTFhNnpmbGV2WkR5SjZ1TkZOUGc4NThjT0hmTHhCdmRJMHZ6dE5ZZC9rZUUiLCJtYWMiOiJhNGE1ZjIxM2VhODA0MjRmZTUxM2JkYjhkOTNhYzk0YWFiYTJjNzkwYTQ0NDRjM2Y4MmNmMGE0N2JlNzc5MmUwIiwidGFnIjoiIn0%3D; expires=Wed, 11 Dec 2024 19:29:12 GMT; Max-Age=14400; path=/; samesite=lax; laravel_session=eyJpdiI6IlFjbFhBQTE0L05OVHZBT1p0T2FwdXc9PSIsInZhbHVlIjoiT3RmT0RzdnZVSGN4UHY1Z3Q3N3hwUERnRFZVQk1LSitxUFNTU2ZSNG9LUWRQQklqNmRGRmVlZFNNVmJXc2hIQkxpSXh4MFFWdlNOQzdOcHQ2RkRGYi9YNlZ6b3FVOE8rNEovS1hUam5pTTdocmgyNTNFL0ZNZm1XVzAwNXJ2akwiLCJtYWMiOiI3MzE2M2ZlMDA3YTBkMmYwNWU2OGQxMzc1MzQ5OTE2ZWYyN2NiYTViMjI3ZWY4ZTJlMzExODc4NjE1YjEyMTEyIiwidGFnIjoiIn0%3D; expires=Wed, 11 Dec 2024 19:29:12 GMT; Max-Age=14400; path=/; httponly; samesite=lax'
         description: null
         custom: []
     responseFields: []
@@ -575,14 +709,14 @@ endpoints:
         name: path
         description: ''
         required: true
-        example: 'Z2#'
+        example: '%'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      path: 'Z2#'
+      path: '%'
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
