@@ -9,4 +9,15 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  modules: [
+    '@nuxtjs/color-mode'
+  ],
+  /*
+  colorMode: {
+    preference: 'system', // Default theme: 'light', 'dark' or 'system'
+    fallback: 'light', // Fallback theme when the system preference is not available
+    classSuffix: ''
+  }
+  */
+    
 })
