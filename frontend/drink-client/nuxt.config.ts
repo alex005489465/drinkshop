@@ -10,7 +10,8 @@ export default defineNuxtConfig({
     },
   },
   modules: [
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode', 
+    '@pinia/nuxt'
   ],
   /*
   colorMode: {

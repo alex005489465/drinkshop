@@ -1,14 +1,3 @@
-<template>
-  <div>
-    <!-- <h1>色彩模式: {{ $colorMode.value }}</h1> -->
-    <button class="bg-transparent hover:bg-blue-500 font-semibold py-2 px-4 border
-    border-blue-500 hover:border-transparent rounded" @click="toggleColorMode">
-      {{ buttonText }}
-    </button>
-  </div>
-</template>
-
-
 <script setup>
 import { ref, watch } from 'vue';
 
@@ -24,6 +13,16 @@ watch(() => colorMode.preference, (newMode) => {
 });
 
 </script>
+
+<template>
+  <div>
+    <!-- <h1>色彩模式: {{ $colorMode.value }}</h1> -->
+    <button class="bg-transparent hover:bg-blue-500 font-semibold py-2 px-4 border
+    border-blue-500 hover:border-transparent rounded" @click="toggleColorMode">
+      {{ buttonText }}
+    </button>
+  </div>
+</template>
 
 <style>
 body {
