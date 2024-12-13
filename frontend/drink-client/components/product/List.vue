@@ -1,37 +1,40 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useCategoryStore } from '@/stores/categoryStore';
+import { onMounted, computed, reactive } from 'vue';
+import { useProductlistStore } from '@/stores/api/productlistStore';
 
-const categoryStore = useCategoryStore();
+const productlistStore = useProductlistStore();
 
-const categories = computed(() => categoryStore.categories);
-const selectedProduct = computed(() => categoryStore.selectedProduct);
+onMounted(() => {
+  productlistStore.fetchProducts();
+});
 
-function toggleCategory(category) {
-  categoryStore.toggleCategory(category);
-}
+const categories = computed(() => productlistStore.categories.value);
 
-function selectProduct(productId) {
-  categoryStore.selectProduct(productId);
-}
+// Use reactive to manage the open/close state of each category
+const categoryStates = reactive({});
+
+const toggleCategory = (categoryName) => {
+  if (categoryStates[categoryName] === undefined) {
+    categoryStates[categoryName] = true;
+  } else {
+    categoryStates[categoryName] = !categoryStates[categoryName];
+  }
+};
 </script>
 
 <template>
   <div>
-      <ul>
-        <li v-for="category in categories" :key="category.name" class="mb-4">
-          <h2 class="text-lg font-semibold cursor-pointer" @click="toggleCategory(category)">
-            {{ category.name }}
-          </h2>
-          <ul v-show="category.isOpen" class="list-disc list-inside">
-            <li v-for="drink in category.drinks" :key="drink.productId">
-              <a href="#" @click.prevent="selectProduct(drink.productId)">
-                {{ drink.name }}
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
+    <h1>Product Categories</h1>
+    <ul>
+      <li v-for="category in categories" :key="category.name">
+        <h2 @click="toggleCategory(category.name)">{{ category.name }}</h2>
+        <ul v-show="categoryStates[category.name]">
+          <li v-for="drink in category.drinks" :key="drink.productId">
+            <h3 @click="productlistStore.selectProduct(drink.productId)">{{ drink.name }}</h3>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </div>
 </template>
 

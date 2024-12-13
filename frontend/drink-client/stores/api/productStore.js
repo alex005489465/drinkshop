@@ -1,21 +1,21 @@
 import { defineStore } from 'pinia';
 import { computed } from 'vue';
-import { useCategoryStore } from './categoryStore';
+import { useProductlistStore } from '@/stores/api/productlistStore';
 
 export const useProductStore = defineStore('productStore', {
     state: () => ({
-        products
+        productsdata
     }),
     getters: {
         selectedProductDetails: (state) => {
-            const categoryStore = useCategoryStore();
-            const selectedProductId = categoryStore.selectedProduct;
-            return state.products.find(product => product.id === selectedProductId) || {};
+            const productlistStore = useProductlistStore();
+            const selectedProductId = productlistStore.selectedProduct;
+            return state.productsdata.find(product => product.id === selectedProductId) || {};
         }
     }
 });
 
-const products = [
+const productsdata = [
     {
         id: 1,
         name: 'Classic Milk Tea',

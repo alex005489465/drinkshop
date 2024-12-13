@@ -1,5 +1,5 @@
 <script setup>
-import { useProductStore } from '@/stores/productStore';
+import { useProductStore } from '~/stores/api/productStore';
 import { computed } from 'vue';
 
 const productStore = useProductStore();
