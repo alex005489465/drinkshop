@@ -8,23 +8,24 @@
     </div>
     -->
     <nav>
-      <a href="/">首頁</a>
-      <a href="/product">產品</a>
-      <a href="/about">關於我們</a>
-      <a href="/contact">聯繫方式</a>
+      <a href="/">Home</a>
+      <a href="/product">Products</a>
+      <a href="/member">Members</a>
+      <a href="/about">About Us</a>
+      <a href="/contact">Contact</a>
     </nav>
     <DarkModeToggle />
     <!-- Search Bar 
     <div class="search-bar">
-      <input type="text" placeholder="搜索飲料...">
+      <input type="text" placeholder="Search drinks...">
     </div>
     -->
     <!-- Cart and User Account Icons
     <div class="cart">
-      <a href="/cart"><img src="/path/to/cart-icon.png" alt="購物車"></a>
+      <a href="/cart"><img src="/path/to/cart-icon.png" alt="Cart"></a>
     </div>
     <div class="user-account">
-      <a href="/login">登錄</a> / <a href="/register">註冊</a>
+      <a href="/login">Login</a> / <a href="/register">Register</a>
     </div>
     -->
   </div>
