@@ -35,4 +35,15 @@ class OrderController extends Controller
         $order->delete();
         return response()->json(['message' => 'Order deleted'], 204);
     }
+
+    public function getOrderIdsByUserId($userId)
+    {
+        $orderIds = Order::where('user_id', $userId)->pluck('id');
+
+        if ($orderIds->isEmpty()) {
+            return response()->json(['message' => 'No orders found for this user.'], 404);
+        }
+
+        return response()->json($orderIds, 200);
+    }
 }

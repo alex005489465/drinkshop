@@ -72,12 +72,34 @@ class ProductController extends Controller
     }
 
     /**
-     * Search for a product by name.
+     * Search for a product by name, price.
      */
     public function search(Request $request)
     {
         $name = $request->query('name');
-        $products = Product::where('name', 'like', "%{$name}%")->get();
+        $minPrice = $request->query('min_price');
+        $maxPrice = $request->query('max_price');
+
+        $products = $this->filterProducts($name, $minPrice, $maxPrice);
         return response()->json($products);
+    }
+
+    private function filterProducts($name = null, $minPrice = null, $maxPrice = null)
+    {
+        $query = Product::query();
+
+        if (!is_null($name) && $name !== '') {
+            $query->where('name', 'like', "%{$name}%");
+        }
+
+        if (!is_null($minPrice) && $minPrice !== '') {
+            $query->where('price', '>=', $minPrice);
+        }
+
+        if (!is_null($maxPrice) && $maxPrice !== '') {
+            $query->where('price', '<=', $maxPrice);
+        }
+
+        return $query->get();
     }
 }
