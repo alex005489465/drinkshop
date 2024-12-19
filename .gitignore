@@ -3,3 +3,6 @@ docs/
 backend/database/
 #my-project
 test/
+database/
+deploy/
+devtools/
