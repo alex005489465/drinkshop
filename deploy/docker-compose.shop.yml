@@ -1,0 +1,31 @@
+services:
+  shop_store:
+    image: mysql:latest
+    container_name: shop_store
+    environment:
+      - MYSQL_ROOT_PASSWORD=example
+      - TZ=Asia/Taipei
+    ports:
+      - 30210:3306
+    volumes:
+      - './../volumes/database/shop_store:/var/lib/mysql'
+    networks:
+      - shop
+  shop_redis:
+    image: redis:latest
+    container_name: shop_redis
+    environment:
+      - TZ=Asia/Taipei
+    ports:
+      - 30211:6379
+    volumes:
+      - './../volumes/database/shop_redis:/data'
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    networks:
+      - shop
+
+networks:
+  shop:
+    name: shop
+    driver: bridge
