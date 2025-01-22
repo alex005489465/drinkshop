@@ -6,7 +6,17 @@ export default defineConfig({
     plugins: [
         laravel({
             input: 'resources/js/app.js',
-            refresh: true,
+            //refresh: true,
+            refresh: [
+                'resources/stores/**',
+                'app/Livewire/**',
+                'app/View/Components/**',
+                'lang/**',
+                'resources/lang/**',
+                'resources/views/**',
+                'routes/**'
+            ],
+            assetsInclude: ['**/*.png', '**/*.jpg', '**/*.svg', '**/*.gif', '**/*.webp', '**/*.ico', '**/*.woff', '**/*.woff2', '**/*.ttf', '**/*.eot'],
         }),
         vue({
             template: {
@@ -17,4 +27,10 @@ export default defineConfig({
             },
         }),
     ],
+    resolve: {
+        alias: {
+            '@': '/resources/js',
+            '@images': '/resources/images',
+        },
+    },
 });
