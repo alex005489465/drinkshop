@@ -1,5 +1,5 @@
 #文檔
 docs/
-backend/database/
-#my-project
-test/
+volumes/
+drinkshop.code-workspace
+Deprecation/
