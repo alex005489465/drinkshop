@@ -9,7 +9,7 @@ class Sheet extends Model
 {
     use HasFactory;
 
-    protected $connection = 'shop';
+    //protected $connection = 'shop';
     protected $table = 'product_sheets';
 
     

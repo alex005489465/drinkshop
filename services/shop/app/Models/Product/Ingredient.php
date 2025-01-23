@@ -9,7 +9,7 @@ class Ingredient extends Model
 {
     use HasFactory;
 
-    protected $connection = 'shop';
+    //protected $connection = 'shop';
     protected $table = 'ingredients';
 
     protected $fillable = [

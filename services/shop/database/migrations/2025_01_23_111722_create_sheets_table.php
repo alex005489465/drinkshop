@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    protected $connection = 'shop';
+    //protected $connection = 'shop';
 
     /**
      * Run the migrations.
