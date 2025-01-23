@@ -24,6 +24,32 @@ services:
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
     networks:
       - shop
+  shop_mongo:
+    image: mongo:latest
+    container_name: shop_mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+      - TZ=Asia/Taipei
+    ports:
+      - 30212:27017
+    volumes:
+      - './../volumes/database/Shop_mongo:/data/db'
+    networks:
+      - shop
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 30215:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@shop_mongo:27017/
+      ME_CONFIG_BASICAUTH: false
+    networks:
+      - shop
+    
+        
 
 networks:
   shop:
