@@ -48,6 +48,19 @@ services:
       ME_CONFIG_BASICAUTH: false
     networks:
       - shop
+  shop_php:
+    image: shop-app:latest
+    container_name: shop_php
+    ports:
+      - 30213:80
+    networks:
+      - shop
+  ubuntu01:
+    image: scripteditor:latest
+    container_name: scripteditor01_container
+    volumes:
+      - ./my-scripts:/scripts
+    tty: true
     
         
 
