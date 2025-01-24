@@ -1,31 +1,32 @@
 # 使用 Swoole 基礎映像
 FROM phpswoole/swoole:php8.4-alpine
 
-# 下載並解壓縮檔案
-RUN curl -L -o drinkshop.zip https://github.com/alex005489465/drinkshop/archive/refs/heads/main.zip \
-    && mkdir -p /tmp/drinkshop_temp \
-    && unzip drinkshop.zip -d /tmp/drinkshop_temp \
-    && cp -r /tmp/drinkshop_temp/drinkshop-main/services/shop/* /var/www/html \
-    && rm drinkshop.zip \
-    && rm -r /tmp/drinkshop_temp
-
 # 設置工作目錄
 WORKDIR /var/www/html
 
 # 安裝必需的工具和擴展
-RUN apk add --no-cache autoconf gcc g++ make \
+RUN apk add --no-cache autoconf gcc g++ make git \
     && docker-php-ext-install pcntl \
     && pecl install mongodb \
     && docker-php-ext-enable mongodb
 
+# 下載並解壓縮檔案
+RUN git clone --branch main https://github.com/alex005489465/drinkshop.git /tmp/drinkshop_temp \
+    && cp -r /tmp/drinkshop_temp/services/shop/* /var/www/html \
+    #&& cp /tmp/drinkshop_temp/deploy/.env.customer /var/www/html/.env \
+    #&& cp //tmp/drinkshop_temp/deploy/start /usr/local/bin/start \
+    && rm -rf /tmp/drinkshop_temp
+
 # 安裝 PHP 依賴包
 RUN composer install --no-dev
 
-COPY ./my-scripts/start /usr/local/bin/start   
+#COPY ./my-scripts/start /usr/local/bin/start   
 COPY ./.env.customer /var/www/html/.env 
 
-RUN chmod +x /usr/local/bin/start
+#RUN chmod +x /usr/local/bin/start
 
-ENTRYPOINT ["/bin/sh", "-c"]
-CMD [ "start" ]
+#ENTRYPOINT ["/bin/sh", "-c"]
+#CMD ["ls"]
 #CMD ["php", "artisan", "octane:start", "--server=swoole", "--host=0.0.0.0"]
+WORKDIR /var/www/html/public
+CMD ["php", "-S", "0.0.0.0:8000", "index.php"]

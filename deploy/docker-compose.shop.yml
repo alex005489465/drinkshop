@@ -49,10 +49,12 @@ services:
     networks:
       - shop
   shop_php:
-    image: shop-app:latest
+    image: shop-app:v0.2
     container_name: shop_php
     ports:
-      - 30213:80
+      - 30213:8000
+    volumes:
+      - './database.sqlite:/var/www/html/database/database.sqlite'
     networks:
       - shop
   ubuntu01:
