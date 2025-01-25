@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('product_lists', function (Blueprint $table) {
             $table->id();
-            $table->ulid('product_id')->unique()->index(); // 使用 ulid 作為 product_id 並設為索引
+            $table->char('product_id', 26)->unique()->index(); // 使用 char 作為 product_id 並設為索引
             $table->string('product_name')->unique(); // 產品名
             $table->boolean('status')->default(true)->index(); // 狀態（上架、下架），使用布爾型態，預設為 true（上架）
             $table->timestamps();
-        });
+        });        
 
         Schema::create('product_descriptions', function (Blueprint $table) {
             $table->id(); // 自動生成的ID
