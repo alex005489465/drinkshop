@@ -57,7 +57,6 @@
                 axios.get(`/products/${productId}`)
                     .then(response => {
                         const product = response.data;
-                        const elements = JSON.parse(product.elements).join(', ');
 
                         productDetails.innerHTML = `
                             <h2 class="text-2xl font-bold mb-4">${product.name}</h2>
@@ -66,7 +65,7 @@
                             </div>
                             <p class="text-gray-700 mb-2">描述: ${product.description}</p>
                             <p class="text-gray-700 mb-2">熱量: ${product.calories}</p>
-                            <p class="text-gray-700 mb-2">成分: ${elements}</p>
+                            <p class="text-gray-700 mb-2">成分: ${product.elements}</p>
                         `;
                     })
                     .catch(error => {

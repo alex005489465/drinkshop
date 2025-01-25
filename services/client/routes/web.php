@@ -8,7 +8,5 @@ Route::get('/', function () {
 
 require __DIR__.'/auth.php';
 
-Route::prefix('products')
-    ->name('products.')
-    ->group(base_path('routes/products.php'));
+require __DIR__.'/products.php';
 
