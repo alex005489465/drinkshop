@@ -5,12 +5,12 @@
     </head>
     <body class="font-sans antialiased">
         <div class="w-full min-h-screen flex flex-col">
-            <nav class="bg-gray-800 text-white p-4 fixed top-0 w-full">
+            <nav class="bg-gray-800 text-white p-4 fixed top-0 w-full z-10">
                 @include('elements.navigation')
             </nav>
             
-            <header class="bg-white shadow-md mt-20">
-                <div class="container mx-auto py-6 px-4 flex items-center">
+            <header class="bg-white shadow-md mt-20 items-center">
+                <div class="container mx-auto py-2 px-4 flex items-center justify-center">
                     @yield('title')
                 </div>
             </header>
@@ -21,12 +21,12 @@
             
             <footer class="bg-gray-100 border-t">
                 <div class="container mx-auto p-4 text-center text-gray-600">
-                    @yield('bottom')
+                    @include('elements.footer')
                 </div>
             </footer>
         </div>
         <script type="module">
-            @yield('scripts')
+            @stack('scripts')
         </script>
     </body>
 </html>

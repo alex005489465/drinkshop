@@ -43,7 +43,7 @@
     </div>
 </div>
 
-<script type="module">
+@push('scripts')
 $(document).ready(function() {
     // Close dropdown when clicking outside
     $(document).click(function(event) {
@@ -52,4 +52,4 @@ $(document).ready(function() {
         }
     });
 });
-</script>
+@endpush

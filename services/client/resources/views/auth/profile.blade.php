@@ -32,7 +32,7 @@
 </div>
 @endsection
 
-@section('scripts')
+@push('scripts')
 $(document).ready(function() {
     $('#updateProfileButton').click(function() {
         var name = $('#name').val();
@@ -80,4 +80,4 @@ $(document).ready(function() {
         });
     });
 });
-@endsection
+@endpush
