@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     'pinia-plugin-persistedstate/nuxt', 
     '@nuxt/ui'
   ],
-  
+  ssr: false,
   runtimeConfig: {
     public: {
       apiBase: '/api' // 可以根據需要修改
@@ -21,5 +21,8 @@ export default defineNuxtConfig({
         autoRewrite: true
       }
     }
+  },
+  typescript: {
+    typeCheck: true
   }
 })

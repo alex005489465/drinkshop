@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import CategoryList from '~/components/nav/categorylist.vue';
-import ProductDescription from '~/components/nav/productdescription.vue';
+import CategoryList from '~/components/product/categorylist.vue';
+import ProductDescription from '~/components/product/productdescription.vue';
 </script>
 
 <template>
