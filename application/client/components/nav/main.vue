@@ -10,11 +10,6 @@ const links = [
     icon: 'i-heroicons-cube',
     to: '/product/introduction'
   },
-  {
-    label: '訂購',
-    icon: 'i-heroicons-shopping-cart',
-    to: '/order'
-  }
 ];
 </script>
 

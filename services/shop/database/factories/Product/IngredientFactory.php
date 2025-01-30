@@ -2,8 +2,8 @@
 
 namespace Database\Factories\Product;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Product\Ingredient;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product\Ingredient>
@@ -20,9 +20,9 @@ class IngredientFactory extends Factory
     public function definition(): array
     {
         return [
-            'ingredient_name' => $this->faker->word,
-            'price' => $this->faker->randomFloat(2, 1, 100),
-            'is_active' => $this->faker->boolean,
+            'ingredient_name' => $this->faker->unique()->word(), // 隨機生成唯一的配料名
+            'price' => $this->faker->numberBetween(5, 50), // 隨機生成價格
+            'is_active' => $this->faker->boolean(), // 隨機生成布爾值作為狀態
         ];
     }
 }

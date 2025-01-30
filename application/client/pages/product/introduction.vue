@@ -1,14 +1,20 @@
 <script setup lang="ts">
 import CategoryList from '~/components/product/categorylist.vue';
 import ProductDescription from '~/components/product/productdescription.vue';
+import { useStoreproduct } from '~/composables/storeproduct';
+
+// 初始化 store 並觸發資料獲取
+useStoreproduct();
 </script>
 
 <template>
   <div class="flex">
-    <div class="left-pane">
+    <!-- 左側類別列表 -->
+    <div class="left-pane w-1/3 p-4 border-r">
       <CategoryList />
     </div>
-    <div class="right-pane">
+    <!-- 右側產品描述 -->
+    <div class="right-pane w-2/3 p-4">
       <ProductDescription />
     </div>
   </div>
@@ -16,32 +22,14 @@ import ProductDescription from '~/components/product/productdescription.vue';
 
 <style scoped>
 .flex {
-  display: flex;
+  @apply min-h-screen bg-white dark:bg-gray-900;
 }
 
 .left-pane {
-  flex: 0 0 30%;
-  min-width: 200px; /* 最小寬度 */
-  background-color: #f0f0f0; /* 普通模式背景顏色 */
-  padding: 1rem; /* 內邊距 */
+  @apply bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700;
 }
 
 .right-pane {
-  flex: 1;
-  background-color: #ffffff; /* 普通模式背景顏色 */
-  padding: 1rem; /* 內邊距 */
-}
-
-/* 深色模式 */
-@media (prefers-color-scheme: dark) {
-  .left-pane {
-    background-color: #333333; /* 深色模式背景顏色 */
-    color: #ffffff; /* 深色模式文字顏色 */
-  }
-
-  .right-pane {
-    background-color: #1a1a1a; /* 深色模式背景顏色 */
-    color: #ffffff; /* 深色模式文字顏色 */
-  }
+  @apply bg-gray-50 dark:bg-gray-800;
 }
 </style>
