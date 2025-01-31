@@ -31,6 +31,9 @@ class ShopServiceProvider extends ServiceProvider
         Route::namespace('App\Http\Controllers\Shop')
             ->prefix('shops')
             ->middleware('web')
-            ->group(__DIR__ . '/../../routes/shops.php');
+            ->group([
+                __DIR__ . '/../../routes/shops/products.php',
+                __DIR__ . '/../../routes/shops/auth.php',
+            ]);
     }
 }

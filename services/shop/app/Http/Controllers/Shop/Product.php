@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
-use App\Http\Response\Product\CategoryListResponse;
-use App\Http\Response\Product\ProductDescriptionResponse;
+use App\Http\Responses\Product\CategoryListResponse;
+use App\Http\Responses\Product\ProductDescriptionResponse;
 use Illuminate\Http\Request;
 
 class Product extends Controller

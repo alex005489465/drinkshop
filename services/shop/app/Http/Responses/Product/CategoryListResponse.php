@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Response\Product;
+namespace App\Http\Responses\Product;
 
 use App\Models\Product\Category;
 use Illuminate\Http\JsonResponse;

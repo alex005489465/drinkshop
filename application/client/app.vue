@@ -1,5 +1,14 @@
 <script setup lang="ts">
 import { NavMain } from '#components';
+
+useHead({
+  title: 'Bliss Paradise',
+  meta: [
+    { charset: 'utf-8' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    { name: 'description', content: 'Bliss Paradise - 幸福天堂手搖飲專賣店' }
+  ]
+})
 </script>
 
 <template>

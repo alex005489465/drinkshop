@@ -5,24 +5,25 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     'pinia-plugin-persistedstate/nuxt', 
-    '@nuxt/ui'
+    '@nuxt/ui',
+    '@nuxtjs/tailwindcss',
   ],
   ssr: false,
   runtimeConfig: {
     public: {
-      apiBase: '/api' // 可以根據需要修改
+      //apiBase: '/api' // 可以根據需要修改
     }
   },
   nitro: {
     devProxy: {
-      '/api': {
+      '/shops': {
         target: 'http://localhost:8000', // 代理目標地址
         changeOrigin: true,
-        autoRewrite: true
-      }
+        autoRewrite: true,
+      },
     }
   },
   typescript: {
     typeCheck: true
-  }
+  },
 })
