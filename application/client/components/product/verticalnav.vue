@@ -40,41 +40,4 @@ const handleDrinkClick = (id: string) => {
 </template>
 
 <style scoped>
-.pl-4 {
-  padding-left: 1rem;
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-
-.py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.hover\:bg-gray-100:hover {
-  background-color: #f7fafc;
-}
-
-.dark\:hover\:bg-gray-700:hover {
-  background-color: #374151;
-}
-
-.rounded-md {
-  border-radius: 0.375rem;
-}
-
-.transition-colors {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-}
-
-.duration-200 {
-  transition-duration: 200ms;
-}
 </style>

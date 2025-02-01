@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use App\Events\Auth\RegisteredUser;
+use App\Listeners\Shop\CreateUserDetailsAfterRegistration;
 
 class ShopServiceProvider extends ServiceProvider
 {
@@ -24,7 +26,8 @@ class ShopServiceProvider extends ServiceProvider
     }
 
     /**
-     * 加載 products.php 路由文件
+     * 加載商店相關路由文件
+     * 包含商品、認證等功能路由
      */
     protected function loadRoutes(): void
     {
@@ -34,6 +37,7 @@ class ShopServiceProvider extends ServiceProvider
             ->group([
                 __DIR__ . '/../../routes/shops/products.php',
                 __DIR__ . '/../../routes/shops/auth.php',
+                __DIR__ . '/../../routes/shops/user.php'
             ]);
     }
 }

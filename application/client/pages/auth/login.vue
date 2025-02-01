@@ -52,6 +52,7 @@ const handleSubmit = async () => {
               v-model="formData.email"
               type="email"
               required
+              autocomplete="email"
               class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:focus:ring-indigo-600 dark:focus:border-indigo-600 focus:z-10 sm:text-sm bg-white dark:bg-gray-800"
               placeholder="電子郵件"
             >

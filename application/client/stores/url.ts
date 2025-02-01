@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { ref } from 'vue';
 //import { computed } from 'vue';
 
 export const useUrlStore = defineStore('url', () => {
@@ -9,8 +10,17 @@ export const useUrlStore = defineStore('url', () => {
   //const baseUrl = computed(() => `${config.public.apiBase}/shops`);
   const baseUrl = '/shops/shops';
 
+  // 主題設定
+  const theme = ref('dark');
+
   // 返回值
   return {
-    baseUrl
+    baseUrl,
+    theme
   };
+}, {
+  persist: {
+    pick: ['theme'],
+    storage: localStorage
+  }
 });

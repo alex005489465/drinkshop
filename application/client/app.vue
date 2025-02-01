@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { NavMain } from '#components';
+import { useAuthentication } from '~/composables/authentication';
+import { useUrlStore } from '~/stores/url';
+import { onMounted } from 'vue';
 
+// 頁面配置
 useHead({
   title: 'Bliss Paradise',
   meta: [
@@ -8,7 +12,26 @@ useHead({
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     { name: 'description', content: 'Bliss Paradise - 幸福天堂手搖飲專賣店' }
   ]
-})
+});
+
+// 在組件掛載後檢查登入狀態與主題設定
+onMounted(async () => {
+  const { loginCheck } = useAuthentication();
+  const urlStore = useUrlStore();
+  const colorMode = useColorMode();
+
+  // 檢查並套用主題設定
+  if (urlStore.theme) {
+    colorMode.preference = urlStore.theme;
+  }
+
+  // 檢查登入狀態
+  try {
+    await loginCheck();
+  } catch (error) {
+    console.error('檢查登入狀態失敗:', error);
+  }
+});
 </script>
 
 <template>

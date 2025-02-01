@@ -37,6 +37,27 @@ class AuthenticatedController extends Controller
     }
 
     /**
+     * 檢查用戶登入狀態
+     */
+    public function check(): JsonResponse
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            return response()->json([
+                'message' => 'Welcome to Drinkshop!',
+                'user' => [
+                    'name' => $user->name,
+                    'email' => $user->email
+                ]
+            ]);
+        }
+
+        return response()->json([
+            'message' => '請先登入'
+        ], 401);
+    }
+
+    /**
      * 處理用戶登出請求
      */
     public function destroy(): JsonResponse

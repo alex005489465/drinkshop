@@ -19,4 +19,8 @@ Route::prefix('auth')->group(function () {
     Route::post('logout', [AuthenticatedController::class, 'destroy'])
         ->middleware('auth')
         ->name('logout');
+        
+    // 檢查登入狀態路由
+    Route::post('check', [AuthenticatedController::class, 'check'])
+        ->name('check');
 });

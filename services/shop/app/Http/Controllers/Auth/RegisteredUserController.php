@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Events\Auth\RegisteredUser;
 
 class RegisteredUserController extends Controller
 {
@@ -25,6 +26,9 @@ class RegisteredUserController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
         ]);
+
+        // 觸發註冊事件
+        event(new RegisteredUser($user));
 
         // 自動登入新用戶
         Auth::login($user);

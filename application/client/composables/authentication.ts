@@ -32,7 +32,8 @@ export const useAuthentication = () => {
   const API_ENDPOINTS = {
     register: `${urlStore.baseUrl}/auth/register`,
     login: `${urlStore.baseUrl}/auth/login`,
-    logout: `${urlStore.baseUrl}/auth/logout`
+    logout: `${urlStore.baseUrl}/auth/logout`,
+    check: `${urlStore.baseUrl}/auth/check`  // 新增檢查端點
   };
 
   /**
@@ -109,6 +110,7 @@ export const useAuthentication = () => {
         throw new Error(error.value.data.message);
       }
 
+      // 登出成功，清除本地狀態
       authStore.logout();
       return response.value;
     } catch (error) {
@@ -117,9 +119,42 @@ export const useAuthentication = () => {
     }
   };
 
+  /**
+   * 檢查用戶登入狀態
+   * @returns 是否已登入
+   */
+  const loginCheck = async () => {
+    try {
+      const { data: response, error } = await useFetch<AuthResponse>(API_ENDPOINTS.check, {
+        method: 'POST',
+        credentials: 'include'
+      });
+
+      if (error.value) {
+        // 如果是 401，表示未登入
+        if (error.value.statusCode === 401) {
+          authStore.logout();
+          return false;
+        }
+        throw new Error(error.value.data.message);
+      }
+
+      // 如果收到正確回應且有用戶資料，更新認證狀態
+      if (response.value?.user) {
+        authStore.login(response.value.user);
+      }
+
+      return true;
+    } catch (error) {
+      console.error('檢查登入狀態失敗:', error);
+      return false;
+    }
+  };
+
   return {
     register,
     login,
-    logout
+    logout,
+    loginCheck
   };
 };
