@@ -2,25 +2,25 @@
 
 namespace App\Models\Product;
 
-//use MongoDB\Laravel\Eloquent\Model;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Description extends Model
 {
     use HasFactory;
-    
-    //protected $connection = 'shop02';
-    protected $table = 'descriptions';
+
+    protected $table = 'product_descriptions';
 
     protected $fillable = [
         'product_id',
         'url',
         'description',
         'calories',
-        'ingredients',
-        'allowed_additives',
+        'elements',
+        'allowed_ingredients',
     ];
 
-
+    protected $casts = [
+        'allowed_ingredients' => 'json', // 將 allowed_ingredients 欄位轉換為 JSON 格式
+    ];
 }

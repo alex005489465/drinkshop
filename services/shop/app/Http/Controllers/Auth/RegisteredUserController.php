@@ -3,48 +3,43 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\RegisterationRequest;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
+use App\Events\Auth\RegisteredUser;
 
 class RegisteredUserController extends Controller
 {
     /**
-     * Display the registration view.
+     * 處理用戶註冊請求
      */
-    public function create(): View
+    public function store(RegisterationRequest $request): JsonResponse
     {
-        return view('auth.register');
-    }
+        // 獲取驗證過的數據
+        $validated = $request->validated();
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function store(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
+        // 創建新用戶
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
         ]);
 
-        event(new Registered($user));
+        // 觸發註冊事件
+        event(new RegisteredUser($user));
 
+        // 自動登入新用戶
         Auth::login($user);
 
-        return redirect(route('home', absolute: false));
+        // 回傳成功響應
+        return response()->json([
+            'message' => "註冊成功，歡迎 {$user->name} 來到 Bliss Paradise",
+            'user' => [
+                'name' => $user->name,
+                'email' => $user->email
+            ]
+        ], 201);
     }
 }

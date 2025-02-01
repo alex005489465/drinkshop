@@ -2,23 +2,21 @@
 
 namespace App\Models\Product;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Price extends Model
 {
+    /** @use HasFactory<\Database\Factories\Product\PriceFactory> */
     use HasFactory;
 
-    //protected $connection = 'shop';
-    protected $table = 'prices';
+    protected $table = 'product_prices';
 
     protected $fillable = [
         'product_id',
-        'price_small',
-        'price_medium',
-        'price_large',
-        'price_xl',
+        'small',
+        'medium',
+        'large',
+        'X_Large',
     ];
-
-    
 }
