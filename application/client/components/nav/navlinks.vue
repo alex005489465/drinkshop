@@ -12,8 +12,12 @@ const navItems: NavItem[] = [
     to: '/'
   },
   {
-    name: '菜單',
+    name: '介紹',
     to: '/product/introduction'
+  },
+  {
+    name: '菜單',
+    to: '/order/menu'
   }
 ];
 </script>

@@ -37,7 +37,9 @@ class ShopServiceProvider extends ServiceProvider
             ->group([
                 __DIR__ . '/../../routes/shops/products.php',
                 __DIR__ . '/../../routes/shops/auth.php',
-                __DIR__ . '/../../routes/shops/user.php'
+                __DIR__ . '/../../routes/shops/user.php',
+                __DIR__ . '/../../routes/shops/cart.php',
+                __DIR__ . '/../../routes/shops/order.php'
             ]);
     }
 }
