@@ -22,7 +22,8 @@ export const useStoreorder = () => {
   // API 端點設定
   // API endpoint configuration
   const endpoints = {
-    products: `${apiUrl}/order/products`
+    products: `${apiUrl}/order/products`,
+    orderItems: `${apiUrl}/order/items`
   };
 
   /**
@@ -46,7 +47,58 @@ export const useStoreorder = () => {
     }
   };
 
+  const fetchOrderItemsFromBackend = async () => {
+    try {
+      // 模擬資料 Mock data
+      const mockData: OrderItemInit[] = [
+        {
+          id: '01JK56DDB9HQPBKR48TCCAVC9N',
+          name: '珍珠奶茶',
+          sizes: {
+            small: 50,
+            medium: 60,
+            large: 70,
+            X_Large: 80
+          },
+          sugar: 5,
+          ice: 5,
+          toppings: [
+            { id: 1, name: '珍珠', price: 10 },
+            { id: 2, name: '波霸', price: 10 },
+            { id: 3, name: '椰果', price: 5 }
+          ]
+        },
+        {
+          id: '01JK56DEGJADS6RF1ES15Z6FE0',
+          name: '抹茶拿鐵',
+          sizes: {
+            small: 50,
+            medium: 60,
+            large: 70,
+            X_Large: 80
+          },
+          sugar: 5,
+          ice: 5,
+          toppings: [
+            { id: 1, name: '珍珠', price: 10 },
+            { id: 2, name: '波霸', price: 10 },
+            { id: 3, name: '椰果', price: 5 }
+          ]
+        }
+      ];
+
+      orderStore.$patch({
+        orderItemInits: mockData
+      });
+      
+    } catch (error) {
+      console.error('Error fetching order items:', error);
+      throw error;
+    }
+  };
+
   return {
-    fetchProductsFromBackend
+    fetchProductsFromBackend,
+    fetchOrderItemsFromBackend
   };
 };

@@ -1,51 +1,95 @@
 <script setup lang="ts">
 /**
- * 定義頁面元數據
- * Define page metadata
+ * 飲品訂購頁面
+ * Drink ordering page
  */
-definePageMeta({
-  
+
+/**
+ * 導入相關組件和工具
+ * Import components and utilities
+ */
+import { ref, onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
+import SelectList from '~/components/order/selectlist.vue';
+import SelectCategories from '~/components/order/selectcategories.vue';
+import OrderSideover from '~/components/order/ordersideover.vue';
+import { useStoreproduct } from '~/composables/storeproduct';
+import { useStoreorder } from '~/composables/storeorder';
+import { useOrderStore } from '~/stores/order';
+
+/**
+ * 定義類型
+ * Type definitions
+ */
+type SlideoverSide = 'left' | 'right' | 'bottom' | 'top';
+
+/**
+ * 側邊欄狀態管理
+ * Slideover state management
+ */
+const isSlideoverOpen = ref(false);
+const slideoverSide = ref<SlideoverSide>('left');
+
+/**
+ * Store初始化
+ * Store initialization
+ */
+const orderStore = useOrderStore();
+const { selectedProduct } = storeToRefs(orderStore);
+
+/**
+ * API方法導入
+ * API methods import
+ */
+const { fetchCategoriesFromBackend } = useStoreproduct();
+const { fetchProductsFromBackend, fetchOrderItemsFromBackend } = useStoreorder();
+
+onMounted(async () => {
+  try {
+    await Promise.all([
+      fetchCategoriesFromBackend(),
+      fetchProductsFromBackend(),
+      fetchOrderItemsFromBackend()
+    ]);
+  } catch (error) {
+    console.error('Failed to fetch data:', error);
+  }
 });
 
 /**
- * 導入組件
- * Import components
+ * 處理產品選擇事件：打開 Slideover
+ * Handle product selection: Open Slideover
  */
-import SelectList from '~/components/order/selectlist.vue';
-
-/**
- * 處理產品選擇事件
- * Handle product selection event
- * @param product - 選擇的產品 Selected product
- */
-const handleProductSelect = (product: any) => {
-  console.log('Selected product:', product);
+const handleProductSelect = (product: Product) => {
+  selectedProduct.value = product;
+  slideoverSide.value = 'right';
+  isSlideoverOpen.value = true;
 };
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- 頁面標題 Page title -->
-      <div class="text-center mb-12">
-        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">飲品訂購</h1>
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <!-- 固定頁面標題 Fixed page title -->
+    <div class="fixed left-0 right-0 top-[80px] z-[5] bg-gray-50 dark:bg-gray-900 shadow-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SelectCategories />
       </div>
+    </div>
 
-      <!-- 產品列表區域 Product list area -->
-      <div class="grid grid-cols-5 gap-6">
-        <!-- 左側產品列表 (80%) Left side product list (80%) -->
-        <div class="col-span-4 min-w-[600px] bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <SelectList @select-product="handleProductSelect" />
-        </div>
+    <!-- 主要內容區 Main content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[120px]">
+      <SelectList @select-product="handleProductSelect" />
 
-        <!-- 右側購物車資訊 (20%) -->
-        <div class="col-span-1 min-w-[200px] bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h2 class="text-xl font-semibold mb-4">購物車</h2>
-          <div class="text-gray-600 dark:text-gray-400">
-            這裡是購物車的內容...
-          </div>
-        </div>
-      </div>
+      <USlideover 
+        v-model="isSlideoverOpen" 
+        :side="slideoverSide"
+        :overlay="false"
+      >
+        <OrderSideover 
+          v-if="selectedProduct"
+          @submit="isSlideoverOpen = false"
+        />
+      </USlideover>
     </div>
   </div>
 </template>
