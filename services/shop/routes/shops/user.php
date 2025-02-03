@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Shop\ShopUserController;
+use App\Shop\Controllers\ShopUserController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('user')->middleware(['auth'])->group(function () {

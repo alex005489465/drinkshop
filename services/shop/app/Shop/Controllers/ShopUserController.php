@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Shop;
+namespace App\Shop\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Shop\Controllers\Controller;
 use App\Models\ShopUser\UserProfile;
 use App\Models\ShopUser\MemberDetail;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use App\Http\Responses\User\UserProfileResponse;
-use App\Http\Responses\User\MemberDetailResponse;
-use App\Http\Requests\User\UserProfileUpdateRequest;
+use App\Shop\Responses\User\UserProfileResponse;
+use App\Shop\Responses\User\MemberDetailResponse;
+use App\Shop\Requests\User\UserProfileUpdateRequest;
 
 class ShopUserController extends Controller
 {

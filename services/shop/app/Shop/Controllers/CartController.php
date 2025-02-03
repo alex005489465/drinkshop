@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Shop;
+namespace App\Shop\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Shop\Controllers\Controller;
 use App\Models\Order\Cart;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

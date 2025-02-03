@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Shop\CartController;
+use App\Shop\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->prefix('cart')->group(function () {
