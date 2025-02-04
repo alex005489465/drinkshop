@@ -8,8 +8,5 @@ use Illuminate\Http\JsonResponse;
 
 class OrderController extends Controller
 {
-    public function index(): JsonResponse
-    {
-        return new ProductListResponse();
-    }
+    
 }

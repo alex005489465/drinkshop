@@ -7,20 +7,29 @@ use App\Models\Order\Cart;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Shop\Responses\Cart\ProductListResponse;
+use App\Shop\Responses\Cart\OrderItemInitResponse;
+use App\Shop\Responses\Cart\CartItemResponse;
 
 class CartController extends Controller
 {
+    
+    public function index(): JsonResponse
+    {
+        return new ProductListResponse();
+    }
+
+    public function listitems(): JsonResponse
+    {
+        return new OrderItemInitResponse();
+    }
+
     /**
      * 獲取用戶購物車
      */
     public function show(): JsonResponse
     {
-        $cart = Cart::where('user_id', Auth::id())->first();
-        
-        return response()->json([
-            'message' => '成功獲取購物車資料',
-            'data' => $cart
-        ]);
+        return new CartItemResponse();
     }
 
     /**
@@ -28,7 +37,7 @@ class CartController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        $cart = Cart::updateOrCreate(
+        Cart::updateOrCreate(
             ['user_id' => Auth::id()],
             [
                 'cart_items' => $request->cart_items,
@@ -38,7 +47,6 @@ class CartController extends Controller
 
         return response()->json([
             'message' => '成功更新購物車',
-            'data' => $cart
         ], 201);
     }
 

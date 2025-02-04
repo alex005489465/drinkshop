@@ -3,6 +3,9 @@ import { NavMain } from '#components';
 import { useAuthentication } from '~/composables/authentication';
 import { useUrlStore } from '~/stores/url';
 import { onMounted } from 'vue';
+import { useStorecart } from '~/composables/storecart';
+import { storeToRefs } from 'pinia';
+import { useAuthStore } from '~/stores/auth';
 
 // 頁面配置
 useHead({
@@ -19,6 +22,9 @@ onMounted(async () => {
   const { loginCheck } = useAuthentication();
   const urlStore = useUrlStore();
   const colorMode = useColorMode();
+  const { fetchCartFromBackend } = useStorecart();
+  const authStore = useAuthStore();
+  const { isAuthenticated } = storeToRefs(authStore);
 
   // 檢查並套用主題設定
   if (urlStore.theme) {
@@ -28,8 +34,12 @@ onMounted(async () => {
   // 檢查登入狀態
   try {
     await loginCheck();
+    // 只在登入狀態下才從後端拉取購物車狀態
+    if (isAuthenticated.value) {
+      await fetchCartFromBackend();
+    }
   } catch (error) {
-    console.error('檢查登入狀態失敗:', error);
+    console.error('初始化失敗:', error);
   }
 });
 </script>

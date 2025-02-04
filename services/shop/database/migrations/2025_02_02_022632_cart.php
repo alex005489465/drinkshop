@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');           // 用戶ID
             
             // 購物車內容
-            $table->json('cart_items');                      // 購物車項目(JSON格式)
+            $table->json('cart_items')->nullable();          // 購物車項目(JSON格式)
             $table->decimal('total_amount', 10, 2);          // 總金額
             
             // 時間戳記

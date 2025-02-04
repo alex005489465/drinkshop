@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { useOrderStore } from '~/stores/order';
+import { useCartStore } from '~/stores/cart';
 
-const orderStore = useOrderStore();
-const { categoryList, currentCategory } = storeToRefs(orderStore);
+const CartStore = useCartStore();
+const { categoryList, currentCategory } = storeToRefs(CartStore);
 </script>
 
 <template>

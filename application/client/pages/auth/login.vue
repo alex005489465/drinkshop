@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, nextTick } from 'vue';
 import { useAuthentication } from '~/composables/authentication';
+import { useStorecart } from '~/composables/storecart';
 
 // 初始化表單數據
 const formData = ref({
@@ -13,6 +14,7 @@ const error = ref('');
 
 // 取得認證方法
 const { login } = useAuthentication();
+const { fetchCartFromBackend } = useStorecart();
 
 // 處理表單提交
 const handleSubmit = async () => {
@@ -20,6 +22,16 @@ const handleSubmit = async () => {
     error.value = '';
     await login(formData.value);
     navigateTo('/');
+    
+    // 非阻塞的背景處理購物車數據
+    nextTick(async () => {
+      try {
+        await fetchCartFromBackend();
+      } catch (error) {
+        console.error('購物車數據載入失敗:', error);
+      }
+    });
+    
   } catch (err: any) {
     error.value = err.message || '登入失敗，請稍後再試';
   }

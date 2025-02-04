@@ -42,14 +42,6 @@ export const useStoreproduct = () => {
     }
   };
 
-  /**
-   * 組件掛載時自動執行
-   */
-  onMounted(() => {
-    fetchCategoriesFromBackend();
-    fetchDrinkDetails();
-  });
-
   // 返回可供外部使用的函數
   return {
     fetchCategoriesFromBackend,

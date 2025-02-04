@@ -10,8 +10,9 @@
  */
 import { ref, computed } from 'vue';
 import { storeToRefs } from 'pinia';
-import { useOrderStore } from '~/stores/order';
 import { useCartStore } from '~/stores/cart';
+import { useAuthStore } from '~/stores/auth';
+import { useRouter } from 'vue-router';
 
 /**
  * 杯型選項類型定義
@@ -29,9 +30,10 @@ const sizeOptions = ['small', 'medium', 'large', 'X_Large'] as const;
  * Store實例化
  * Store initialization
  */
-const orderStore = useOrderStore();
 const cartStore = useCartStore();
-const { selectedOrderItem } = storeToRefs(orderStore);
+const { selectedOrderItem } = storeToRefs(cartStore);
+const authStore = useAuthStore();
+const { isAuthenticated } = storeToRefs(authStore);
 
 /**
  * 表單數據
@@ -92,35 +94,46 @@ const generateUniqueId = (): number => {
  * 提交處理函數
  * Submit handler
  */
-const emit = defineEmits(['submit']);
+const emit = defineEmits(['submit', 'cancel']);
 
 const handleSubmit = () => {
   if (!selectedOrderItem.value) return;
-  
-  const id = generateUniqueId();
-  cartStore.cartItems[id] = {
-    drinkId: selectedOrderItem.value.id,
-    drinkName: selectedOrderItem.value.name,
-    size: {
-      type: selectedSize.value,
-      price: basePrice.value
-    },
-    sugar: selectedSugar.value,
-    ice: selectedIce.value,
-    toppings: selectedToppings.value.map(id => {
-      const topping = selectedOrderItem.value!.toppings.find(t => t.id === id)!;
-      return {
-        id: topping.id,
-        name: topping.name,
-        price: topping.price
-      };
-    }),
-    price: price.value,
-    quantity: quantity.value,
-    subtotal: subtotal.value,
-    note: note.value || undefined
-  };
-  emit('submit');
+
+  if (isAuthenticated.value) {
+    const id = generateUniqueId();
+    cartStore.cartItems[id] = {
+      drinkId: selectedOrderItem.value.id,
+      drinkName: selectedOrderItem.value.name,
+      size: {
+        type: selectedSize.value,
+        price: basePrice.value
+      },
+      sugar: selectedSugar.value,
+      ice: selectedIce.value,
+      toppings: selectedToppings.value.map(id => {
+        const topping = selectedOrderItem.value!.toppings.find(t => t.id === id)!;
+        return {
+          id: topping.id,
+          name: topping.name,
+          price: topping.price
+        };
+      }),
+      price: price.value,
+      quantity: quantity.value,
+      subtotal: subtotal.value,
+      note: note.value || undefined
+    };
+    emit('submit');
+  } else {
+    isModalOpen.value = true;
+  }
+};
+
+const isModalOpen = ref(false);
+const router = useRouter();
+
+const handleNavigateToLogin = () => {
+  router.push('/auth/login');
 };
 </script>
 
@@ -225,9 +238,37 @@ const handleSubmit = () => {
 
     <!-- Fixed Footer -->
     <div class="p-4 border-t">
-      <UButton type="submit" color="primary" @click="handleSubmit">
-        加入購物車
-      </UButton>
+      <div class="flex space-x-4">
+        <UButton type="submit" color="primary" @click="handleSubmit">
+          加入購物車
+        </UButton>
+        <UButton color="gray" variant="soft" @click="$emit('cancel')">
+          取消
+        </UButton>
+      </div>
     </div>
+
+    <!-- Modal -->
+    <UModal v-model="isModalOpen">
+      <div class="p-4">
+        <h3 class="text-lg font-medium mb-4">需登入後才能將飲料加入購物車</h3>
+        <p class="mb-6">是否要前往登入頁面？</p>
+        <div class="flex justify-end space-x-4">
+          <UButton 
+            color="gray" 
+            variant="soft" 
+            @click="isModalOpen = false"
+          >
+            取消
+          </UButton>
+          <UButton 
+            color="primary" 
+            @click="handleNavigateToLogin"
+          >
+            前往登入
+          </UButton>
+        </div>
+      </div>
+    </UModal>
   </div>
 </template>

@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
-import type { Product } from '~/stores/order';
-import { useOrderStore } from '~/stores/order';
+import type { Product } from '~/stores/cart';
+import { useCartStore } from '~/stores/cart';
 
 /**
  * 初始化 order store
  * Initialize order store
  */
-const orderStore = useOrderStore();
+const CartStore = useCartStore();
 
 /**
  * 解構 store 狀態
  * Destructure store state
  */
-const { productList, currentCategory } = storeToRefs(orderStore);
+const { productList, currentCategory } = storeToRefs(CartStore);
 
 /**
  * 根據分類篩選產品

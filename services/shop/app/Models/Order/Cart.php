@@ -41,7 +41,8 @@ class Cart extends Model
     ];
 
     protected $casts = [
-        'total_amount' => 'integer'  // 金額轉換為整數
+        'cart_items' => 'array',    // JSON自動轉換為陣列
+        'total_amount' => 'integer' // 金額轉換為整數
     ];
 
     /**

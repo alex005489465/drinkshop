@@ -1,10 +1,21 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import CategoryList from '~/components/product/categorylist.vue';
 import ProductDescription from '~/components/product/productdescription.vue';
 import { useStoreproduct } from '~/composables/storeproduct';
 
-// 初始化 store 並觸發資料獲取
-useStoreproduct();
+const { fetchCategoriesFromBackend, fetchDrinkDetails } = useStoreproduct();
+
+onMounted(async () => {
+  try {
+    await Promise.all([
+      fetchCategoriesFromBackend(),
+      fetchDrinkDetails()
+    ]);
+  } catch (error) {
+    console.error('Failed to fetch initial data:', error);
+  }
+});
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shop\Responses\Order;
+namespace App\Shop\Responses\Cart;
 
 use App\Models\Product\Product;
 use App\Models\Product\Price;
