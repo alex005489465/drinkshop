@@ -12,8 +12,20 @@ const navItems: NavItem[] = [
     to: '/'
   },
   {
-    name: '菜單',
+    name: '介紹',
     to: '/product/introduction'
+  },
+  {
+    name: '菜單',
+    to: '/order/menu'
+  },
+  {
+    name: '購物車',
+    to: '/order/cart'
+  },
+  {
+    name: '訂單',
+    to: '/order/history'
   }
 ];
 </script>

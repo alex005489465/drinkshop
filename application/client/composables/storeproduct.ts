@@ -22,11 +22,16 @@ export const useStoreproduct = () => {
    * 從後端取得類別資料
    */
   const fetchCategoriesFromBackend = async () => {
-    const { data, error } = await useFetch<CategoryFromBackend[]>(endpoints.categoryList);
-    if (error.value) {
-      console.error('取得類別資料時發生錯誤:', error.value);
-    } else if (data.value) {
-      store.categoriesFromBackend = data.value;
+    try {
+      const response = await fetch(endpoints.categoryList);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json() as CategoryFromBackend[];
+      store.categoriesFromBackend = data;
+    } catch (error) {
+      console.error('取得類別資料時發生錯誤:', error);
+      throw error;
     }
   };
 
@@ -34,21 +39,18 @@ export const useStoreproduct = () => {
    * 從後端取得飲料詳細資料
    */
   const fetchDrinkDetails = async () => {
-    const { data, error } = await useFetch<DrinkDetail[]>(endpoints.drinkDetails);
-    if (error.value) {
-      console.error('取得飲料詳細資料時發生錯誤:', error.value);
-    } else if (data.value) {
-      store.drinkDetails = data.value;
+    try {
+      const response = await fetch(endpoints.drinkDetails);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json() as DrinkDetail[];
+      store.drinkDetails = data;
+    } catch (error) {
+      console.error('取得飲料詳細資料時發生錯誤:', error);
+      throw error;
     }
   };
-
-  /**
-   * 組件掛載時自動執行
-   */
-  onMounted(() => {
-    fetchCategoriesFromBackend();
-    fetchDrinkDetails();
-  });
 
   // 返回可供外部使用的函數
   return {

@@ -30,6 +30,20 @@ export interface MemberDetail {
     last_activity_at: string | null;  // 最後活動時間
 }
 
+export interface FormState {
+    user_name: string;
+    gender: string;
+    birthdate: string;
+    nationality: string;
+    id_number: string;
+    notes: string;
+    user_email: string;
+    backup_email: string;
+    phone: string;
+    residential_address: string;
+    mailing_address: string;
+  }
+
 export const useUserStore = defineStore('user', () => {
     const profile = ref<UserProfile | null>(null);
     const memberDetail = ref<MemberDetail | null>(null);

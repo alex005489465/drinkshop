@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Shop\Product;
+use App\Shop\Controllers\Product;
 use App\Http\Controllers\Product\CategoryController;
 
 Route::get('/list', [Product::class, 'list']);

@@ -7,21 +7,9 @@ import { useUserProfile } from '~/composables/userprofile';
 import { useUserStore } from '~/stores/user';
 import { useRouter } from 'vue-router';
 import { computed } from 'vue';
-//import type { UserProfile } from '~/stores/user';
+import type { FormState } from '~/stores/user';
 
-interface FormState {
-  user_name: string;
-  gender: string;
-  birthdate: string;
-  nationality: string;
-  id_number: string;
-  notes: string;
-  user_email: string;
-  backup_email: string;
-  phone: string;
-  residential_address: string;
-  mailing_address: string;
-}
+
 
 const userStore = useUserStore();
 const { updateProfile } = useUserProfile();
@@ -54,9 +42,11 @@ const birthdateFormatted = computed({
 
 // 提交表單
 const handleSubmit = async () => {
-  const success = await updateProfile(formData.state);
-  if (success) {
-    router.push('/user/member');
+  try {
+    await updateProfile(formData.state);
+    navigateTo('/user/member');
+  } catch (error) {
+    console.error('更新資料時發生錯誤:', error);
   }
 };
 </script>

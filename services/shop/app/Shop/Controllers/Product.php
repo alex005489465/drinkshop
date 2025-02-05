@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Shop;
+namespace App\Shop\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Responses\Product\CategoryListResponse;
-use App\Http\Responses\Product\ProductDescriptionResponse;
+use App\Shop\Controllers\Controller;
+use App\Shop\Responses\Product\CategoryListResponse;
+use App\Shop\Responses\Product\ProductDescriptionResponse;
 use Illuminate\Http\Request;
 
 class Product extends Controller

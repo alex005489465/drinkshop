@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Responses\User;
+namespace App\Shop\Responses\User;
 
 use Illuminate\Http\JsonResponse;
 use App\Models\ShopUser\UserProfile;
