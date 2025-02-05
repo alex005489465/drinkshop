@@ -1,4 +1,13 @@
 <script setup lang="ts">
+/**
+ * 購物車側邊欄組件
+ * Cart Sideover Component
+ */
+
+ definePageMeta({
+  middleware: ['auth']
+});
+
 import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useCartStore } from '~/stores/cart';

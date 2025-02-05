@@ -1,11 +1,22 @@
 <script setup lang="ts">
+/**
+ * 購物車列表組件
+ * Cart List Component
+ */
+definePageMeta({
+  middleware: ['auth']
+});
+
 import { storeToRefs } from 'pinia';
 import { useCartStore } from '~/stores/cart';
 import { defineEmits } from 'vue';
+import { useStoreorder } from '~/composables/storeorder';
+import { navigateTo } from '#imports';
 
 const emit = defineEmits(['modify', 'submit']);
 const cartStore = useCartStore();
 const { cartItems, selectedEditItem, total } = storeToRefs(cartStore);
+const { submitOrderToBackend } = useStoreorder();
 
 type SugarLevel = 0 | 1 | 2 | 3 | 4;
 type IceLevel = 0 | 1 | 2 | 3 | 4;
@@ -46,8 +57,14 @@ const handleDelete = (index: number) => {
   delete cartItems.value[index];
 };
 
-const handleSubmit = () => {
-  emit('submit');
+const handleSubmit = async () => {
+  try {
+    await submitOrderToBackend();
+    cartItems.value = {};  // Clear cart after successful order
+    navigateTo('/');
+  } catch (error) {
+    console.error('訂單送出失敗:', error);
+  }
 };
 
 const handleClear = () => {
@@ -118,7 +135,7 @@ const handleClear = () => {
     </div>
     <UButton
       color="primary"
-      @click="$emit('submit')"
+      @click="handleSubmit"
     >
       送出訂單
     </UButton>

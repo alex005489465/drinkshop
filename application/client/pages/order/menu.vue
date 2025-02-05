@@ -10,9 +10,9 @@
  */
 import { ref, onMounted, watch } from 'vue';
 import { storeToRefs } from 'pinia';
-import SelectList from '~/components/order/selectlist.vue';
-import SelectCategories from '~/components/order/selectcategories.vue';
-import OrderSideover from '~/components/order/ordersideover.vue';
+import SelectList from '~/components/cart/selectlist.vue';
+import SelectCategories from '~/components/cart/selectcategories.vue';
+import OrderSideover from '~/components/cart/ordersideover.vue';
 import { useStoreproduct } from '~/composables/storeproduct';
 import { useStorecart } from '~/composables/storecart';
 import { useCartStore } from '~/stores/cart';

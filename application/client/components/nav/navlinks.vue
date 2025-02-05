@@ -22,6 +22,10 @@ const navItems: NavItem[] = [
   {
     name: '購物車',
     to: '/order/cart'
+  },
+  {
+    name: '訂單',
+    to: '/order/history'
   }
 ];
 </script>
