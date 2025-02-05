@@ -25,15 +25,15 @@ interface AuthResponse {
 }
 
 export const useAuthentication = () => {
-  const urlStore = useUrlStore();
   const authStore = useAuthStore();
+  const urlStore = useUrlStore();
+  const apiUrl = urlStore.baseUrl;
 
-  // API 端點
   const API_ENDPOINTS = {
-    register: `${urlStore.baseUrl}/auth/register`,
-    login: `${urlStore.baseUrl}/auth/login`,
-    logout: `${urlStore.baseUrl}/auth/logout`,
-    check: `${urlStore.baseUrl}/auth/check`  // 新增檢查端點
+    register: `${apiUrl}/auth/register`,
+    login: `${apiUrl}/auth/login`,
+    logout: `${apiUrl}/auth/logout`,
+    check: `${apiUrl}/auth/check`  // 新增檢查端點
   };
 
   /**
@@ -41,22 +41,28 @@ export const useAuthentication = () => {
    */
   const register = async (data: RegisterData) => {
     try {
-      const { data: response, error } = await useFetch<AuthResponse>(API_ENDPOINTS.register, {
+      const response = await fetch(API_ENDPOINTS.register, {
         method: 'POST',
-        body: data,
-        credentials: 'include'  // 添加這行來允許跨域請求攜帶認證信息
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        //credentials: 'include',
+        body: JSON.stringify(data)
       });
 
-      if (error.value) {
-        throw new Error(error.value.data.message);
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message);
       }
+
+      const responseData = await response.json();
 
       // 註冊成功後，用戶會自動登入，更新本地狀態
-      if (response.value?.user) {
-        authStore.login(response.value.user);
+      if (responseData.user) {
+        authStore.login(responseData.user);
       }
 
-      return response.value;
+      return responseData;
     } catch (error) {
       console.error('註冊失敗:', error);
       throw error;
@@ -69,27 +75,27 @@ export const useAuthentication = () => {
    * @returns 登入回應，包含成功訊息和用戶資料
    * @throws 登入失敗時拋出錯誤
    */
-  const login = async (data: LoginData) => {
+  const login = async (credentials: LoginData) => {
     try {
-      // 發送登入請求到後端
-      const { data: response, error } = await useFetch<AuthResponse>(API_ENDPOINTS.login, {
+      const response = await fetch(API_ENDPOINTS.login, {
         method: 'POST',
-        body: data,
-        credentials: 'include'  // 添加這行來允許跨域請求攜帶認證信息
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify(credentials)
       });
 
-      // 處理後端回傳的錯誤
-      if (error.value) {
-        throw new Error(error.value.data.message);
+      if (!response.ok) {
+        throw new Error('Login failed');
       }
 
-      // 如果有用戶資料，更新認證狀態
-      if (response.value?.user) {
-        authStore.login(response.value.user);
+      const data = await response.json();
+      if (data.user) {
+        authStore.login(data.user);
       }
 
-      // 返回後端回應
-      return response.value;
+      return data;
     } catch (error) {
       console.error('登入失敗:', error);
       throw error;
@@ -101,18 +107,18 @@ export const useAuthentication = () => {
    */
   const logout = async () => {
     try {
-      const { data: response, error } = await useFetch<AuthResponse>(API_ENDPOINTS.logout, {
+      const response = await fetch(API_ENDPOINTS.logout, {
         method: 'POST',
         credentials: 'include'
       });
 
-      if (error.value) {
-        throw new Error(error.value.data.message);
+      if (!response.ok) {
+        throw new Error('Logout failed');
       }
 
-      // 登出成功，清除本地狀態
+      const data = await response.json();
       authStore.logout();
-      return response.value;
+      return data;
     } catch (error) {
       console.error('登出失敗:', error);
       throw error;

@@ -1,6 +1,6 @@
 import { useUserStore } from '~/stores/user';
 import { useUrlStore } from '~/stores/url';
-import type { UserProfile, MemberDetail } from '~/stores/user';
+import type { UserProfile, MemberDetail, FormState } from '~/stores/user';
 
 export const useUserProfile = () => {
   const userStore = useUserStore();
@@ -14,50 +14,61 @@ export const useUserProfile = () => {
   };
 
   const fetchUserProfile = async () => {
-    const { data, error } = await useFetch<{ data: UserProfile }>(API_ENDPOINTS.profile);
-    
-    if (error.value) {
-      console.error('獲取用戶資料失敗:', error.value);
-      return;
-    }
+    try {
+      const response = await fetch(API_ENDPOINTS.profile, {
+        credentials: 'include'
+      });
 
-    if (data.value) {
-      userStore.profile = data.value.data;
+      if (!response.ok) {
+        throw new Error('Failed to fetch user profile');
+      }
+
+      const { data } = await response.json() as { data: UserProfile };
+      userStore.profile = data;
+    } catch (error) {
+      console.error('獲取用戶資料失敗:', error);
+      throw error;
     }
   };
 
   const fetchMemberDetails = async () => {
-    const { data, error } = await useFetch<{ data: MemberDetail }>(API_ENDPOINTS.member);
-    
-    if (error.value) {
-      console.error('獲取會員資料失敗:', error.value);
-      return;
-    }
+    try {
+      const response = await fetch(API_ENDPOINTS.member, {
+        credentials: 'include'
+      });
 
-    if (data.value) {
-      userStore.memberDetail = data.value.data;
+      if (!response.ok) {
+        throw new Error('Failed to fetch member details');
+      }
+
+      const { data } = await response.json() as { data: MemberDetail };
+      userStore.memberDetail = data;
+    } catch (error) {
+      console.error('獲取會員資料失敗:', error);
+      throw error;
     }
   };
 
-  const updateProfile = async (profileData: Partial<UserProfile>) => {
+  const updateProfile = async (profileData: FormState) => {
     try {
-      const { data, error } = await useFetch<{ data: UserProfile }>(API_ENDPOINTS.updateProfile, {
+      const response = await fetch(API_ENDPOINTS.updateProfile, {
         method: 'POST',
-        body: profileData
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify(profileData)
       });
-      
-      if (error.value) {
-        console.error('更新用戶資料失敗:', error.value);
-        return false;
+
+      if (!response.ok) {
+        throw new Error('Failed to update profile');
       }
 
-      if (data.value) {
-        userStore.profile = data.value.data;
-        return true;
-      }
+      const { data } = await response.json() as { data: UserProfile };
+      userStore.profile = data;
     } catch (error) {
       console.error('更新用戶資料失敗:', error);
-      return false;
+      throw error;
     }
   };
 

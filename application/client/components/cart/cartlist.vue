@@ -3,9 +3,6 @@
  * 購物車列表組件
  * Cart List Component
  */
-definePageMeta({
-  middleware: ['auth']
-});
 
 import { storeToRefs } from 'pinia';
 import { useCartStore } from '~/stores/cart';

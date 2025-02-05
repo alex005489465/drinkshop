@@ -2,14 +2,6 @@ import { useUrlStore } from '~/stores/url';
 import { useCartStore } from '~/stores/cart';
 import type { Product } from '~/stores/cart';
 
-/**
- * API 回應格式介面
- * Interface for API response
- */
-interface ApiResponse {
-  data: Product[];
-}
-
 interface CartItemsResponse {
   message: string;
   data: OrderItemInit[];
@@ -29,8 +21,8 @@ interface CartResponse {
  * Composable for cart-related API operations
  */
 export const useStorecart = () => {
-  const urlStore = useUrlStore();
   const cartStore = useCartStore();
+  const urlStore = useUrlStore();
   const apiUrl = urlStore.baseUrl;
 
   // API 端點設定
@@ -44,22 +36,21 @@ export const useStorecart = () => {
 
   /**
    * 
-   * 從後端獲取產品列表
+   * 從後端取得產品列表
    * Fetch product list from backend
    */
   const fetchProductsFromBackend = async () => {
     try {
-      const { data: response } = await useFetch<ApiResponse>(endpoints.products);
-      
-      if (response.value) {
-        // 更新 store 中的產品列表
-        // Update product list in store
-        cartStore.$patch({
-          productList: response.value.data
-        });
+      const response = await fetch(endpoints.products);
+      if (!response.ok) {
+        throw new Error('Failed to fetch products');
       }
+      const { data } = await response.json() as { data: Product[] };
+      cartStore.$patch((state) => {
+        state.productList = data;
+      });
     } catch (error) {
-      console.error('Error fetching products:', error);
+      console.error('取得產品列表時發生錯誤:', error);
       throw error;
     }
   };
