@@ -24,3 +24,9 @@ disown -h %1
 %1 表示作业号，如果这是你启动的第一个后台任务，则为 %1。
 
 你可以使用 jobs -l 查看所有作业及其编号。
+
+git checkout main
+git merge develop
+git tag -a 1.1.0 -m "Release version 1.1.0"
+git push origin 1.1.0
+git checkout develop 
