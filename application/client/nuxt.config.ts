@@ -9,15 +9,20 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
   ],
   ssr: false,
+  hooks: {
+    'prerender:routes' ({ routes }) {
+      routes.clear() // Do not generate any routes (except the defaults)
+    }
+  },
   runtimeConfig: {
     public: {
-      //apiBase: '/api' // 可以根據需要修改
+      apiBase: '/api' // 可以根據需要修改
     }
   },
   nitro: {
     devProxy: {
-      '/shops': {
-        target: 'http://localhost:8000', // 代理目標地址
+      '/api': {
+        target: 'http://localhost:8000/shops', // 代理目標地址
         changeOrigin: true,
         autoRewrite: true,
       },

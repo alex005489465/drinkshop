@@ -8,7 +8,7 @@ export const useUrlStore = defineStore('url', () => {
   
   // API 基礎 URL
   //const baseUrl = computed(() => `${config.public.apiBase}/shops`);
-  const baseUrl = '/shops/shops';
+  const baseUrl = '/api';
 
   // 主題設定
   const theme = ref('dark');
