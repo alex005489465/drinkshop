@@ -1,0 +1,48 @@
+FROM php:8.2-fpm-alpine
+
+# Install dependencies first
+RUN apk add --no-cache sqlite sqlite-dev git \
+    && sqlite3 --version
+
+# Install PHP extensions
+RUN docker-php-ext-install pdo pdo_sqlite
+
+# Install composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+WORKDIR /var/www/html
+
+# Clone from GitHub and copy .env.example
+RUN git clone https://github.com/alex005489465/drinkshop.git /tmp/drinkshop \
+    && cp -r /tmp/drinkshop/services/shop/* /var/www/html/ \
+    && rm -rf /tmp/drinkshop
+
+# Copy our .env.example
+COPY ./config/laravel/.env.example /var/www/html/.env.example
+
+# Install dependencies
+RUN composer install --no-interaction --no-progress --prefer-dist
+
+# Set permissions for Laravel
+RUN chown -R www-data:www-data /var/www/html \
+    && find /var/www/html/storage -type d -exec chmod 775 {} \; \
+    && find /var/www/html/storage -type f -exec chmod 664 {} \; \
+    && chmod -R 775 /var/www/html/bootstrap/cache \
+    && chmod -R 775 /var/www/html/database \
+    && mkdir -p /var/www/html/storage/logs \
+    && touch /var/www/html/storage/logs/laravel.log \
+    && chown -R www-data:www-data /var/www/html/storage/logs \
+    && chmod 664 /var/www/html/storage/logs/laravel.log
+
+# Set working directory for PHP-FPM
+WORKDIR /var/www/html/public
+
+COPY ./config/php/www.conf /usr/local/etc/php-fpm.d/www.conf
+
+# Create entrypoint script
+COPY ./scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+EXPOSE 9000
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
