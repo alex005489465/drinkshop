@@ -1,53 +1,30 @@
-# 檢查參數
-if ($args.Count -lt 2) {
-    Write-Error "Please provide two parameters: action (run) and target (network, server, store, or tool)."
+# 獲取腳本所在的目錄
+$scriptPath = Split-Path -Parent $MyInvocation.MyCommand.Path
+
+# 設置 drinkshop 目錄的路徑
+$drinkshopPath = Join-Path $scriptPath "drinkshop"
+
+# 檢查 drinkshop 目錄是否存在
+if (-not (Test-Path $drinkshopPath)) {
+    Write-Host "未找到 drinkshop 目錄，正在克隆倉庫..."
+    # 克隆指定標籤的倉庫到 drinkshop 目錄
+    git clone --branch 1.1.0 --depth 1 https://github.com/alex005489465/drinkshop.git $drinkshopPath
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "克隆倉庫失敗，請檢查網絡連接或倉庫地址。"
+        exit 1
+    }
+    Write-Host "倉庫克隆成功。"
+} else {
+    Write-Host "發現現有的 drinkshop 目錄。"
+}
+
+# 啟動 Docker 容器
+Write-Host "正在啟動 Docker 容器..."
+docker-compose -f docker-compose.demo.yml up -d
+
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Docker 容器啟動失敗，請檢查 docker-compose 配置。"
     exit 1
 }
 
-# 設置參數
-$action = $args[0]
-$target = $args[1]
-
-# 回到上一層根目錄
-Set-Location -Path ".."
-
-# 定義 run 函數
-function Start-DockerCompose {
-    param (
-        [string]$target
-    )
-
-    # 設置 Docker Compose 檔案路徑
-    $stack = "$target"
-    $composeFilePath = "./demoshop/docker-compose.$target.yml"
-
-    # 運行 Docker Compose
-    docker-compose -p $stack -f $composeFilePath up -d
-
-    if ($?) {
-        Write-Output "Docker Compose started successfully with $composeFilePath."
-    } else {
-        Write-Error "Failed to start Docker Compose with $composeFilePath."
-    }
-}
-
-# 根據第一個參數執行對應操作
-switch ($action) {
-    "run" {
-        if ($target -eq "all") {
-            # 依次運行 store, server, tool
-            foreach ($subTarget in @("store", "server", "tool")) {
-                Start-DockerCompose -target $subTarget
-            }
-        } else {
-            Start-DockerCompose -target $target
-        }
-    }
-    default {
-        Write-Error "Invalid action. Currently supported actions: run."
-        exit 1
-    }
-}
-
-# 回到 deploy 目錄
-Set-Location -Path "demoshop"
+Write-Host "Docker 容器已成功啟動！"
