@@ -9,7 +9,7 @@ $action = $args[0]
 $target = $args[1]
 
 # 回到上一層根目錄
-Set-Location -Path ".."
+#Set-Location -Path ".."
 
 # 定義 run 函數
 function Start-DockerCompose {
@@ -50,4 +50,4 @@ switch ($action) {
 }
 
 # 回到 deploy 目錄
-Set-Location -Path "demoshop"
+#Set-Location -Path "demoshop"

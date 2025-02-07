@@ -12,12 +12,10 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-# Clone from GitHub and copy .env.example
-RUN git clone https://github.com/alex005489465/drinkshop.git /tmp/drinkshop \
-    && cp -r /tmp/drinkshop/services/shop/* /var/www/html/ \
-    && rm -rf /tmp/drinkshop
+# Copy Laravel project
+COPY ./services/shop /var/www/html
 
-# Copy our .env.example
+# Copy .env.example
 COPY ./config/laravel/.env.example /var/www/html/.env.example
 
 # Install dependencies
