@@ -26,16 +26,8 @@ chmod 664 database/database.sqlite
 php artisan config:clear
 php artisan cache:clear
 
-# 优化配置加载
-php artisan config:cache
-
-# 优化路由加载
-php artisan route:cache
-
-# 运行数据库迁移
 php artisan migrate --force
 
-# 运行数据库填充
 php artisan db:seed --class=ProductSeeder --force
 
 # Start PHP-FPM
