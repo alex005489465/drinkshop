@@ -1,0 +1,1 @@
+docker-compose -f docker-compose.store.yml -p shopstore up -d

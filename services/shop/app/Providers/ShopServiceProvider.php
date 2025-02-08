@@ -31,8 +31,7 @@ class ShopServiceProvider extends ServiceProvider
      */
     protected function loadRoutes(): void
     {
-        Route::namespace('App\Http\Controllers\Shop')
-            ->prefix('shops')
+        Route::prefix('shops')
             ->middleware('web')
             ->group([
                 __DIR__ . '/../../routes/shops/products.php',
