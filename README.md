@@ -19,5 +19,5 @@
 執行後會通過powershell運行dockercompose來啟動兩個容器：
 - nginx：負責前端 vue.spa
 - php-fpm：運行後端 laravel.api
-完成後，可以透過瀏覽器
+- 完成後，可以透過瀏覽器
 [進行測試](http://127.0.0.1:8080/)
