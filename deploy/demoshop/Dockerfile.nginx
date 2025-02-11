@@ -16,7 +16,7 @@ COPY ./drinkshop/application/client/ ./
 # 进行生产环境构建
 RUN npx nuxi generate
 
-# 第二阶段：Nginx 服务
+# 第二阶段：Nginx 服务(74.47MB)
 FROM nginx:alpine
 
 # 设置工作目录
