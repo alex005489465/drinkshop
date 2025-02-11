@@ -18,4 +18,7 @@ Route::prefix('products')->group(function () {
         
     Route::post('/delete', [ProductController::class, 'destroy'])
         ->name('products.destroy');
+        
+    Route::get('/info', [ProductController::class, 'listProducts'])
+        ->name('products.info');
 });
