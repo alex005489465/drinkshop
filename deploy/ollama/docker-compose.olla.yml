@@ -1,0 +1,20 @@
+services:
+  ollama:
+    image: ollama/ollama:latest  # 請根據實際需要調整映像檔名稱
+    container_name: ollama
+    runtime: nvidia  # 啟用 NVIDIA GPU 支援
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    ports:
+      - "11434:11434"  # 請根據 Ollama 服務所需開放的端口進行修改
+    volumes:
+      - ./volumes/ollama/data:/var/ollama/data  # 若有需要，可將資料掛載到本機目錄
+      - ./volumes/ollama/models:/root/.ollama  # 若有需要，可將模型掛載到本機目錄
