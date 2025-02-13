@@ -7,6 +7,7 @@
 此專案包含兩部分：
 - **vue.spa**：前端單頁應用程式，位於 `application/client`。
 - **laravel.api**：後端 API 專案，位於 `services/shop`。
+- **詳細文件**：可以參考 `./docs` 目錄下的說明文件。
 
 ## 部署說明
 
